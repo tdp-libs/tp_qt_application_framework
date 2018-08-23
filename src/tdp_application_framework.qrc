@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/tdp_application_framework">
+        <file alias="SplitVertically.png">resources/SplitVertically.png</file>
+        <file alias="SplitHorizontally.png">resources/SplitHorizontally.png</file>
+        <file alias="Close.png">resources/Close.png</file>
+        <file alias="SplitWidgetComboArrow.png">resources/SplitWidgetComboArrow.png</file>
+        <file alias="Configure.png">resources/Configure.png</file>
+    </qresource>
+</RCC>

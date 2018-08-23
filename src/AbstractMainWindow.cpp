@@ -1,0 +1,122 @@
+#include "tdp_application_framework/AbstractMainWindow.h"
+#include "tdp_application_framework/AbstractWorkspace.h"
+
+#include <QAction>
+#include <QMessageBox>
+
+namespace tdp_application_framework
+{
+
+//##################################################################################################
+struct AbstractMainWindow::Private
+{
+  QList<AbstractWorkspace*> workspaces;
+  AbstractWorkspace* currentWorkspace{nullptr};
+  bool questionExit{true};
+
+  //################################################################################################
+  static void actionClicked(void* opaque)
+  {
+    auto workspace = static_cast<AbstractWorkspace*>(opaque);
+    auto mainWindow = workspace->mainWindow();
+    if(mainWindow)
+    {
+      mainWindow->d->currentWorkspace = workspace;
+      mainWindow->currentWorkspaceChanged();
+
+      for(AbstractWorkspace* ws : mainWindow->d->workspaces)
+        if(ws->action())
+          ws->action()->setChecked(ws==mainWindow->d->currentWorkspace);
+    }
+  }
+};
+
+//##################################################################################################
+AbstractMainWindow::AbstractMainWindow(QWidget* parent):
+  QWidget(parent),
+  d(new Private())
+{
+
+}
+
+//##################################################################################################
+AbstractMainWindow::~AbstractMainWindow()
+{
+  delete d;
+}
+
+//##################################################################################################
+void AbstractMainWindow::setQuestionExit(bool questionExit)
+{
+  d->questionExit = questionExit;
+}
+
+//##################################################################################################
+void AbstractMainWindow::addWorkspace(AbstractWorkspace* workspace)
+{
+  d->workspaces.append(workspace);
+  workspace->setMainWindow(this);
+
+  if(workspace->action())
+  {
+    workspace->action()->setCheckable(true);
+    connect(workspace->action(), &QAction::triggered, [workspace](bool){Private::actionClicked(workspace);});
+  }
+
+  if(d->workspaces.size()==1)
+  {
+    if(workspace->action())
+      workspace->action()->setChecked(true);
+    d->currentWorkspace = workspace;
+    currentWorkspaceChanged();
+  }
+}
+
+//##################################################################################################
+void AbstractMainWindow::setCurrentWorkspace(AbstractWorkspace* workspace)
+{
+  if(d->workspaces.contains(workspace))
+    Private::actionClicked(workspace);
+}
+
+//##################################################################################################
+QList<AbstractWorkspace*> AbstractMainWindow::workspaces()const
+{
+  return d->workspaces;
+}
+
+//##################################################################################################
+AbstractWorkspace* AbstractMainWindow::currentWorkspace()const
+{
+  return d->currentWorkspace;
+}
+
+//##################################################################################################
+void AbstractMainWindow::addMenu(QMenu* menu)
+{
+  menu->setParent(this);
+}
+
+//##################################################################################################
+void AbstractMainWindow::currentWorkspaceChanged()
+{
+
+}
+
+//##################################################################################################
+void AbstractMainWindow::closeEvent(QCloseEvent* closeEvent)
+{
+  if(!d->questionExit)
+    return;
+
+  if(QMessageBox::warning(this,
+                          "Exit?",
+                          "Are you sure you want to exit?",
+                          QMessageBox::Yes,
+                          QMessageBox::No) == QMessageBox::Yes)
+    closeEvent->accept();
+  else
+    closeEvent->ignore();
+}
+
+}

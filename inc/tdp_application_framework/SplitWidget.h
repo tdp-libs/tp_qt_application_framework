@@ -3,6 +3,8 @@
 
 #include "tdp_application_framework/Globals.h"
 
+#include "json.hpp"
+
 #include <QWidget>
 
 namespace tdp_application_framework
@@ -31,7 +33,7 @@ public:
 
 private:
   //################################################################################################
-  SplitWidget(DisplayManager* displayManager, const QByteArray* state);
+  SplitWidget(DisplayManager* displayManager, const nlohmann::json* state);
 
 public:
   //################################################################################################
@@ -48,16 +50,16 @@ public:
 
   \returns The state of this widget as a serialized variant map.
   */
-  QByteArray saveState()const;
+  nlohmann::json saveState()const;
 
   //################################################################################################
   //! Load the state of this widget
   /*!
-  This will reset the widget deleting all children and then restore the state from the byteArray,
+  This will reset the widget deleting all children and then restore the state from the json,
   creating new splits and displays as required. This will also load the state of the newly created
   child displays.
   */
-  void loadState(const QByteArray& byteArray);
+  void loadState(const nlohmann::json& j);
 
 public slots:
   //################################################################################################

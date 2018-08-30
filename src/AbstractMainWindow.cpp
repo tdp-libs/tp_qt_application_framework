@@ -1,6 +1,8 @@
 #include "tdp_application_framework/AbstractMainWindow.h"
 #include "tdp_application_framework/AbstractWorkspace.h"
 
+#include "tp_utils/JSONUtils.h"
+
 #include <QAction>
 #include <QMessageBox>
 
@@ -95,6 +97,24 @@ AbstractWorkspace* AbstractMainWindow::currentWorkspace()const
 void AbstractMainWindow::addMenu(QMenu* menu)
 {
   menu->setParent(this);
+}
+
+//##################################################################################################
+nlohmann::json AbstractMainWindow::saveState()const
+{
+  nlohmann::json j;
+
+  for(auto workspace : d->workspaces)
+    j[workspace->name()] = workspace->saveState();
+
+  return j;
+}
+
+//##################################################################################################
+void AbstractMainWindow::loadState(const nlohmann::json& j)
+{
+  for(auto workspace : d->workspaces)
+    workspace->loadState(TPJSON(j, workspace->name()));
 }
 
 //##################################################################################################

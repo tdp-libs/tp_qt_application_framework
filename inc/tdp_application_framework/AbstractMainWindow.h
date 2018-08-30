@@ -3,6 +3,8 @@
 
 #include "tdp_application_framework/Globals.h"
 
+#include "json.hpp"
+
 #include <QList>
 #include <QWidget>
 #include <QMenu>
@@ -52,6 +54,12 @@ public:
   \param menu - The nenu to add to the menu bar.
   */
   virtual void addMenu(QMenu* menu);
+
+  //################################################################################################
+  virtual nlohmann::json saveState()const;
+
+  //################################################################################################
+  virtual void loadState(const nlohmann::json& j);
 
 protected:
   //################################################################################################

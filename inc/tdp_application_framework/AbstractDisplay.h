@@ -3,6 +3,8 @@
 
 #include "tdp_application_framework/Globals.h"
 
+#include "json.hpp"
+
 #include <QWidget>
 
 namespace tdp_application_framework
@@ -63,7 +65,7 @@ public:
   \return The current state of the display, serialized to a byte array.
   \sa loadState().
   */
-  virtual QByteArray saveState()const;
+  virtual nlohmann::json saveState()const;
 
   //################################################################################################
   //! Restore the state of the display
@@ -72,10 +74,10 @@ public:
   with the byteArray this should use defaults. See the \link Serialization Serialization \endlink
   page for more details on how data should be serialized.
 
-  \param byteArray - The byte array returned by a call to saveState.
+  \param j - The json object returned by a call to saveState.
   \sa saveState().
   */
-  virtual void loadState(const QByteArray& byteArray);
+  virtual void loadState(const nlohmann::json& j);
 
   //################################################################################################
   //! Provide a widget that is used to configure the display

@@ -20,15 +20,15 @@ AbstractDisplayFactory* AbstractDisplay::displayFactory()const
 }
 
 //##################################################################################################
-QByteArray AbstractDisplay::saveState()const
+nlohmann::json AbstractDisplay::saveState()const
 {
-  return QByteArray();
+  return nlohmann::json();
 }
 
 //##################################################################################################
-void AbstractDisplay::loadState(const QByteArray& byteArray)
+void AbstractDisplay::loadState(const nlohmann::json& j)
 {
-  TP_UNUSED(byteArray);
+  TP_UNUSED(j);
 }
 
 //##################################################################################################

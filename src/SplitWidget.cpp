@@ -5,6 +5,9 @@
 
 #include "tp_utils/RefCount.h"
 #include "tp_utils/DebugUtils.h"
+#include "tp_utils/JSONUtils.h"
+
+#include "base64.h"
 
 #include <QVBoxLayout>
 #include <QToolBar>
@@ -173,7 +176,7 @@ struct SplitWidget::Private
   }
 
   //################################################################################################
-  void split(Qt::Orientation orientation, const QByteArray* stateA=nullptr, const QByteArray* stateB=nullptr, const QByteArray* splitterState=nullptr)
+  void split(Qt::Orientation orientation, const nlohmann::json* stateA=nullptr, const nlohmann::json* stateB=nullptr, const std::string* splitterState=nullptr)
   {
     splitOrientation = orientation;
     QPointer<AbstractDisplay> existingDisplay = display;
@@ -222,7 +225,7 @@ struct SplitWidget::Private
     content = splitter;
 
     if(splitterState)
-      splitter->restoreState(*splitterState);
+      splitter->restoreState(QByteArray::fromStdString(*splitterState));
   }
 };
 
@@ -236,7 +239,7 @@ SplitWidget::SplitWidget(DisplayManager *displayManager, QWidget* parent):
 }
 
 //##################################################################################################
-SplitWidget::SplitWidget(DisplayManager* displayManager, const QByteArray* state):
+SplitWidget::SplitWidget(DisplayManager* displayManager, const nlohmann::json* state):
   QWidget(nullptr),
   d(new Private(this, displayManager))
 {
@@ -255,49 +258,41 @@ SplitWidget::~SplitWidget()
 }
 
 //##################################################################################################
-QByteArray SplitWidget::saveState()const
+nlohmann::json SplitWidget::saveState()const
 {
-  QMap<QString, QVariant> stateMap;
+  nlohmann::json j;
 
-  stateMap.insert("Toolbars Visible", d->toolBarVisible);
+  j["Toolbars Visible"] = d->toolBarVisible;
 
   //If this contains a display and is not split, save the state of the display here
   if(d->display)
   {
-    stateMap.insert("Factory ID", d->display->displayFactory()->id());
-    stateMap.insert("Display State", d->display->saveState());
+    j["Factory ID"]    = d->display->displayFactory()->id().toStdString();
+    j["Display State"] = d->display->saveState();
   }
 
   //If this is split save the state of the two halfs
   if(d->a && d->b)
   {
-    stateMap.insert("Split A", d->a->saveState());
-    stateMap.insert("Split B", d->b->saveState());
-    stateMap.insert("Split Orientation", d->splitOrientation==Qt::Horizontal ? "Horizontal" : "Vertical");
+    j["Split A"]           = d->a->saveState();
+    j["Split B"]           = d->b->saveState();
+    j["Split Orientation"] = d->splitOrientation==Qt::Horizontal ? "Horizontal" : "Vertical";
 
     //Save the geometry of the splitter
     auto splitter = qobject_cast<QSplitter*>(d->content);
     if(splitter)
-      stateMap.insert("Splitter Geometry", splitter->saveState());
+    {
+      auto s = splitter->saveState();
+      j["Splitter Geometry"] = base64_encode(reinterpret_cast<const unsigned char*>(s.data()), static_cast<unsigned int>(s.size()));
+    }
   }
 
-  QByteArray byteArray;
-  {
-    QDataStream dataStream(&byteArray, QIODevice::WriteOnly);
-    dataStream << stateMap;
-  }
-  return byteArray;
+  return j;
 }
 
 //##################################################################################################
-void SplitWidget::loadState(const QByteArray& byteArray)
+void SplitWidget::loadState(const nlohmann::json& j)
 {
-  QMap<QString, QVariant> stateMap;
-  {
-    QDataStream dataStream(byteArray);
-    dataStream >> stateMap;
-  }
-
   //Clear out any existing content
   if(d->content)
   {
@@ -317,24 +312,26 @@ void SplitWidget::loadState(const QByteArray& byteArray)
     d->display = nullptr;
   }
 
-  d->toolBarVisible = stateMap.value("Toolbars Visible", true).toBool();
+  d->toolBarVisible =  TPJSONBool(j, "Toolbars Visible", true);
 
-  if(stateMap.contains("Split A") && stateMap.contains("Split B"))
+  if(j.find("Split A")!=j.end() && j.find("Split B")!=j.end())
   {
     Qt::Orientation orientation = Qt::Vertical;
-    if(stateMap.value("Split Orientation").toString() == "Horizontal")
+    if(TPJSONString(j, "Split Orientation") == "Horizontal")
       orientation = Qt::Horizontal;
 
-    QByteArray stateA = stateMap.value("Split A").toByteArray();
-    QByteArray stateB = stateMap.value("Split B").toByteArray();
-    QByteArray splitterState = stateMap.value("Splitter Geometry").toByteArray();
+    const auto stateA = TPJSON(j, "Split A");
+    const auto stateB = TPJSON(j, "Split B");
+    std::string splitterState = TPJSONString(j, "Splitter Geometry");
+    splitterState = base64_decode(splitterState);
 
     d->split(orientation, &stateA, &stateB, &splitterState);
   }
   else
   {
     d->makeEmptyContent();
-    if(stateMap.contains("Factory ID"))
+    std::string factoryID = TPJSONString(j, "Factory ID");
+    if(!factoryID.empty())
     {
       if(d->display)
       {
@@ -344,14 +341,14 @@ void SplitWidget::loadState(const QByteArray& byteArray)
         //d->display->deleteLater();
       }
 
-      int index = d->displayManager->factoryIndex(stateMap.value("Factory ID").toString());
+      int index = d->displayManager->factoryIndex(QString::fromStdString(factoryID));
       d->display = d->displayManager->produceDisplay(index);
 
       if(d->display)
       {
         d->displayFrame->layout()->addWidget(d->display);
         d->displayIndex = index;
-        d->display->loadState(stateMap.value("Display State").toByteArray());
+        d->display->loadState(TPJSON(j, "Display State"));
       }
       else
         d->displayIndex = 0;

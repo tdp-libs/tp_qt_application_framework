@@ -20,6 +20,7 @@
 #include <QDataStream>
 #include <QDialog>
 #include <QDialogButtonBox>
+#include <QTimer>
 
 #include <QDebug>
 
@@ -383,64 +384,71 @@ bool SplitWidget::toolBarsVisible()const
 //##################################################################################################
 void SplitWidget::closeTriggered()
 {
-  if(!d->parentSplitWidget)
+  //Here we use a 0 timer to perform the actual removal once control has returned to the event loop.
+  //This is done because the close action that calls this method may have been placed in a menu
+  //because there is not space on the menu bar. In that situation there is a crash when the menu is
+  //destroyed by Qt.
+  QTimer* t = new QTimer();
+  t->setSingleShot(true);
+  t->start(0);
+  connect(t, &QTimer::timeout, [&, t]()
   {
-    delete d->content;
-    d->makeEmptyContent();
-  }
-  else
-  {
-    SplitWidget* otherSplitWidget = nullptr;
-    Private* d1 = d->parentSplitWidget->d;
-    Private* d2 = nullptr;
-
-    if(d->parentSplitWidget->d->a == this)
-      otherSplitWidget = d->parentSplitWidget->d->b;
-    else if(d->parentSplitWidget->d->b == this)
-      otherSplitWidget = d->parentSplitWidget->d->a;
-
-    if(otherSplitWidget)
-      d2 = otherSplitWidget->d;
-
-    if(!d1 || !d2 || !otherSplitWidget)
+    t->deleteLater();
+    if(!d->parentSplitWidget)
     {
-      tpWarning() << "Close split error! " << __FILE__ << ":" << __LINE__;
-      return;
+      delete d->content;
+      d->makeEmptyContent();
     }
-
-    QPointer<QWidget> oldContent = d1->content;
-
-    d1->a = d2->a;
-    d1->b = d2->b;
-    d1->content = d2->content;
-    d1->toolBar = d2->toolBar;
-    d1->displayFrame = d2->displayFrame;
-    d1->display = d2->display;
-    d1->displayIndex = d2->displayIndex;
-    d1->addActions();
-
-    d2->a = nullptr;
-    d2->b = nullptr;
-    d2->content = nullptr;
-    d2->displayFrame = nullptr;
-    d2->display = nullptr;
-
-    if(d1->a)
-      d1->a->d->parentSplitWidget = d->parentSplitWidget;
-
-    if(d1->b)
-      d1->b->d->parentSplitWidget = d->parentSplitWidget;
-
-    if(d1->content)
-      d->parentSplitWidget->layout()->addWidget(d1->content);
-
-    if(oldContent)
+    else
     {
-      delete oldContent;
-      //oldContent->setParent(nullptr);
-      //oldContent->deleteLater();
+      SplitWidget* otherSplitWidget = nullptr;
+      Private* d1 = d->parentSplitWidget->d;
+      Private* d2 = nullptr;
+
+      if(d->parentSplitWidget->d->a == this)
+        otherSplitWidget = d->parentSplitWidget->d->b;
+      else if(d->parentSplitWidget->d->b == this)
+        otherSplitWidget = d->parentSplitWidget->d->a;
+
+      if(otherSplitWidget)
+        d2 = otherSplitWidget->d;
+
+      if(!d1 || !d2 || !otherSplitWidget)
+      {
+        tpWarning() << "Close split error! " << __FILE__ << ":" << __LINE__;
+        return;
+      }
+
+      QPointer<QWidget> oldContent = d1->content;
+
+      d1->a = d2->a;
+      d1->b = d2->b;
+      d1->content = d2->content;
+      d1->toolBar = d2->toolBar;
+      d1->displayFrame = d2->displayFrame;
+      d1->display = d2->display;
+      d1->displayIndex = d2->displayIndex;
+      d1->addActions();
+
+      d2->a = nullptr;
+      d2->b = nullptr;
+      d2->content = nullptr;
+      d2->displayFrame = nullptr;
+      d2->display = nullptr;
+
+      if(d1->a)
+        d1->a->d->parentSplitWidget = d->parentSplitWidget;
+
+      if(d1->b)
+        d1->b->d->parentSplitWidget = d->parentSplitWidget;
+
+      if(d1->content)
+        d->parentSplitWidget->layout()->addWidget(d1->content);
+
+      if(oldContent)
+        delete oldContent;
     }
-  }
+  });
 }
 
 //##################################################################################################

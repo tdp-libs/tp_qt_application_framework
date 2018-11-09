@@ -4,9 +4,9 @@
 #include "tp_utils/Globals.h"
 
 #if defined(TDP_APPLICATION_FRAMEWORK_LIBRARY)
-#  define TDP_APPLICATION_FRAMEWORK_SHARED_EXPORT
+#  define TDP_APPLICATION_FRAMEWORK_SHARED_EXPORT TP_EXPORT
 #else
-#  define TDP_APPLICATION_FRAMEWORK_SHARED_EXPORT
+#  define TDP_APPLICATION_FRAMEWORK_SHARED_EXPORT TP_IMPORT
 #endif
 
 //##################################################################################################

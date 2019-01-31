@@ -7,7 +7,7 @@ DEFINES += TDP_APPLICATION_FRAMEWORK_LIBRARY
 
 RESOURCES += src/tdp_application_framework.qrc
 
-SOURCES += src/Globals.cpp
+#SOURCES += src/Globals.cpp
 HEADERS += inc/tdp_application_framework/Globals.h
 
 SOURCES += src/SplitWidget.cpp
@@ -16,7 +16,7 @@ HEADERS += inc/tdp_application_framework/SplitWidget.h
 SOURCES += src/AbstractDisplay.cpp
 HEADERS += inc/tdp_application_framework/AbstractDisplay.h
 
-SOURCES += src/AbstractDisplayFactory.cpp
+#SOURCES += src/AbstractDisplayFactory.cpp
 HEADERS += inc/tdp_application_framework/AbstractDisplayFactory.h
 
 SOURCES += src/DisplayManager.cpp
@@ -39,6 +39,6 @@ HEADERS += inc/tdp_application_framework/displays/ref_count/RefCountDisplayFacto
 SOURCES += src/main_windows/FileMenuMainWindow.cpp
 HEADERS += inc/tdp_application_framework/main_windows/FileMenuMainWindow.h
 
-SOURCES += src/main_windows/IconBarMainWindow.cpp
+#SOURCES += src/main_windows/IconBarMainWindow.cpp
 HEADERS += inc/tdp_application_framework/main_windows/IconBarMainWindow.h
 

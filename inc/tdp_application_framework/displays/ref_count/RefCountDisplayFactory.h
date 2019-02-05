@@ -17,16 +17,10 @@ class TDP_APPLICATION_FRAMEWORK_SHARED_EXPORT RefCountDisplayFactory: public tdp
 {
 public:
   //################################################################################################
-  RefCountDisplayFactory()=default;
+  RefCountDisplayFactory();
 
   //################################################################################################
   ~RefCountDisplayFactory() override=default;
-
-  //################################################################################################
-  QString title()const override;
-
-  //################################################################################################
-  QString id()const override;
 
   //################################################################################################
   tdp_application_framework::AbstractDisplay* produceDisplay() override;

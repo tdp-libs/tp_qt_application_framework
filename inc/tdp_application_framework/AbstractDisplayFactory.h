@@ -5,6 +5,11 @@
 
 #include <QString>
 
+namespace tp_utils
+{
+class Interface;
+}
+
 namespace tdp_application_framework
 {
 class AbstractDisplay;
@@ -20,30 +25,30 @@ class TDP_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractDisplayFactory
 public:
   //################################################################################################
   //! Constructor
-  AbstractDisplayFactory()=default;
+  AbstractDisplayFactory(const QString& title, const QString& id);
 
   //################################################################################################
   //! Destructor
-  virtual ~AbstractDisplayFactory()=default;
+  virtual ~AbstractDisplayFactory();
 
   //################################################################################################
-  //! The title of display factory
+  //! The title of display factory.
   /*!
   This should return the title of display factory, this may be visible in the user interface for
   adding displays of this type.
 
   \return The title of the display factory.
   */
-  virtual QString title()const = 0;
+  QString title()const;
 
   //################################################################################################
-  //! Returns the id of this display factory
+  //! Returns the id of this display factory.
   /*!
   This is the id that is used for loading and saing to the display, it may be the same as the title.
 
   \return The id of this display factory.
   */
-  virtual QString id()const = 0;
+  QString id()const;
 
   //################################################################################################
   //! Produce an instance of the display
@@ -54,6 +59,33 @@ public:
   \return A new display, or nullptr.
   */
   virtual AbstractDisplay* produceDisplay() = 0;
+
+private:
+  QString m_title;
+  QString m_id;
+};
+
+//##################################################################################################
+template<typename T>
+class DisplayFactory : public AbstractDisplayFactory
+{
+public:
+  //################################################################################################
+  DisplayFactory(const QString& title, const QString& id, const tp_utils::Interface* interface):
+    AbstractDisplayFactory(title, id),
+    m_interface(interface)
+  {
+
+  }
+
+  //################################################################################################
+  tdp_application_framework::AbstractDisplay* produceDisplay() override
+  {
+    return new T(this, m_interface);
+  }
+
+private:
+  const tp_utils::Interface* m_interface;
 };
 
 }

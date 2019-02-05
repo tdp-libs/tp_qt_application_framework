@@ -5,17 +5,10 @@ namespace tdp_application_framework
 {
 
 //##################################################################################################
-QString RefCountDisplayFactory::title()const
+RefCountDisplayFactory::RefCountDisplayFactory():
+  tdp_application_framework::AbstractDisplayFactory("Instance count", "Instance count")
 {
-  static const QString titleString("Instance count");
-  return titleString;
-}
 
-//##################################################################################################
-QString RefCountDisplayFactory::id()const
-{
-  static const QString idString("Instance count");
-  return idString;
 }
 
 //##################################################################################################

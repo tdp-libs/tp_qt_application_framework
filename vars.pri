@@ -16,7 +16,7 @@ HEADERS += inc/tdp_application_framework/SplitWidget.h
 SOURCES += src/AbstractDisplay.cpp
 HEADERS += inc/tdp_application_framework/AbstractDisplay.h
 
-#SOURCES += src/AbstractDisplayFactory.cpp
+SOURCES += src/AbstractDisplayFactory.cpp
 HEADERS += inc/tdp_application_framework/AbstractDisplayFactory.h
 
 SOURCES += src/DisplayManager.cpp

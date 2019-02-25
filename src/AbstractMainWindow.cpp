@@ -44,6 +44,9 @@ AbstractMainWindow::AbstractMainWindow(QWidget* parent):
 //##################################################################################################
 AbstractMainWindow::~AbstractMainWindow()
 {
+  tpDeleteAll(d->workspaces);
+  d->workspaces.clear();
+
   delete d;
 }
 

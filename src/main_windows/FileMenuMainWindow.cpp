@@ -4,6 +4,7 @@
 #include <QMenu>
 #include <QMenuBar>
 #include <QVBoxLayout>
+#include <QPointer>
 
 namespace tdp_application_framework
 {
@@ -13,15 +14,23 @@ struct FileMenuMainWindow::Private
 {
   FileMenuMainWindow* q;
 
-  QMenuBar* menuBar       {nullptr};
-  QMenu* viewMenu         {nullptr};
-  QVBoxLayout* menuLayout {nullptr};
+  QPointer<QMenuBar>    menuBar;
+  QPointer<QMenu>       viewMenu;
+  QPointer<QVBoxLayout> menuLayout;
 
   //################################################################################################
   Private(FileMenuMainWindow* q_):
     q(q_)
   {
 
+  }
+
+  //################################################################################################
+  ~Private()
+  {
+    delete menuBar;
+    delete viewMenu;
+    delete menuLayout;
   }
 
   //################################################################################################

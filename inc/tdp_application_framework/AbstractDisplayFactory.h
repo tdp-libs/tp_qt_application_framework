@@ -25,7 +25,7 @@ class TDP_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractDisplayFactory
 public:
   //################################################################################################
   //! Constructor
-  AbstractDisplayFactory(const QString& title, const QString& id);
+  AbstractDisplayFactory(QString title, QString id);
 
   //################################################################################################
   //! Destructor

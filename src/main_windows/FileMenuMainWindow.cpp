@@ -12,6 +12,7 @@ namespace tdp_application_framework
 //##################################################################################################
 struct FileMenuMainWindow::Private
 {
+  TP_NONCOPYABLE(Private);
   FileMenuMainWindow* q;
 
   QPointer<QMenuBar>    menuBar;

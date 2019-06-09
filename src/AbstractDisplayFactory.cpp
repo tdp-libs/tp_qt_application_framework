@@ -4,9 +4,9 @@ namespace tdp_application_framework
 {
 
 //##################################################################################################
-AbstractDisplayFactory::AbstractDisplayFactory(const QString& title, const QString& id):
-  m_title(title),
-  m_id(id)
+AbstractDisplayFactory::AbstractDisplayFactory(QString title, QString id):
+  m_title(std::move(title)),
+  m_id(std::move(id))
 {
 
 }

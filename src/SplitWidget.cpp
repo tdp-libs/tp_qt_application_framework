@@ -323,7 +323,7 @@ void SplitWidget::loadState(const nlohmann::json& j)
 
     const auto stateA = TPJSON(j, "Split A");
     const auto stateB = TPJSON(j, "Split B");
-    std::string splitterState = TPJSONString(j, "Splitter Geometry");
+    auto splitterState = TPJSONString(j, "Splitter Geometry");
     splitterState = base64_decode(splitterState);
 
     d->split(orientation, &stateA, &stateB, &splitterState);
@@ -331,7 +331,7 @@ void SplitWidget::loadState(const nlohmann::json& j)
   else
   {
     d->makeEmptyContent();
-    std::string factoryID = TPJSONString(j, "Factory ID");
+    auto factoryID = TPJSONString(j, "Factory ID");
     if(!factoryID.empty())
     {
       if(d->display)
@@ -388,7 +388,7 @@ void SplitWidget::closeTriggered()
   //This is done because the close action that calls this method may have been placed in a menu
   //because there is not space on the menu bar. In that situation there is a crash when the menu is
   //destroyed by Qt.
-  QTimer* t = new QTimer();
+  auto* t = new QTimer();
   t->setSingleShot(true);
   t->start(0);
   connect(t, &QTimer::timeout, [&, t]()

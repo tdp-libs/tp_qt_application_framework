@@ -282,10 +282,7 @@ nlohmann::json SplitWidget::saveState()const
     //Save the geometry of the splitter
     auto splitter = qobject_cast<QSplitter*>(d->content);
     if(splitter)
-    {
-      auto s = splitter->saveState();
-      j["Splitter Geometry"] = base64_encode(reinterpret_cast<const unsigned char*>(s.data()), static_cast<unsigned int>(s.size()));
-    }
+      j["Splitter Geometry"] = base64_encode(splitter->saveState().toStdString());
   }
 
   return j;

@@ -7,7 +7,7 @@ DEFINES += TDP_APPLICATION_FRAMEWORK_LIBRARY
 
 RESOURCES += src/tdp_application_framework.qrc
 
-#SOURCES += src/Globals.cpp
+SOURCES += src/Globals.cpp
 HEADERS += inc/tdp_application_framework/Globals.h
 
 SOURCES += src/SplitWidget.cpp

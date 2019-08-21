@@ -21,7 +21,7 @@ is used to manage multiple displays in a layout.
 */
 namespace tdp_application_framework
 {
-
+int staticInit();
 }
 
 #endif

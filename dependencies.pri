@@ -4,3 +4,4 @@ DEPENDENCIES += tdp_qt_widgets
 INCLUDEPATHS += tdp_application_framework/inc/
 LIBRARIES    += tdp_application_framework
 
+TP_STATIC_INIT += tdp_application_framework

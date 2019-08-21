@@ -11,6 +11,7 @@
 
 #include <QVBoxLayout>
 #include <QToolBar>
+#include <QToolButton>
 #include <QAction>
 #include <QSplitter>
 #include <QPointer>

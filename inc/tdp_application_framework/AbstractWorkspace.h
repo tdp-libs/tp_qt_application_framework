@@ -1,6 +1,8 @@
 #ifndef tdp_application_framework_AbstractWorkspace_h
 #define tdp_application_framework_AbstractWorkspace_h
 
+#include "tdp_application_framework/Globals.h"
+
 #include "json.hpp"
 
 #include <QWidget>
@@ -10,7 +12,7 @@ namespace tdp_application_framework
 class AbstractMainWindow;
 
 //##################################################################################################
-class AbstractWorkspace: public QWidget
+class TDP_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractWorkspace: public QWidget
 {
   Q_OBJECT
 public:

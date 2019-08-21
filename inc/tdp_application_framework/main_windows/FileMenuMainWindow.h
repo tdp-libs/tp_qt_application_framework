@@ -8,7 +8,7 @@ namespace tdp_application_framework
 class AbstractWorkspace;
 
 //##################################################################################################
-class FileMenuMainWindow: public AbstractMainWindow
+class TDP_APPLICATION_FRAMEWORK_SHARED_EXPORT FileMenuMainWindow: public AbstractMainWindow
 {
   Q_OBJECT
 public:
@@ -16,7 +16,7 @@ public:
   FileMenuMainWindow(QWidget* parent=nullptr);
 
   //################################################################################################
-  ~FileMenuMainWindow();
+  ~FileMenuMainWindow() override;
 
   //################################################################################################
   //! This will add a workspace to this main window

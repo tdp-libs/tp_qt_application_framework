@@ -14,7 +14,7 @@ namespace tdp_application_framework
 class AbstractWorkspace;
 
 //##################################################################################################
-class AbstractMainWindow: public QWidget
+class TDP_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractMainWindow: public QWidget
 {
   Q_OBJECT
 public:

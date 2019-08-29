@@ -13,6 +13,9 @@ HEADERS += inc/tdp_application_framework/Globals.h
 SOURCES += src/SplitWidget.cpp
 HEADERS += inc/tdp_application_framework/SplitWidget.h
 
+SOURCES += src/TabWidget.cpp
+HEADERS += inc/tdp_application_framework/TabWidget.h
+
 SOURCES += src/AbstractDisplay.cpp
 HEADERS += inc/tdp_application_framework/AbstractDisplay.h
 
@@ -34,6 +37,14 @@ HEADERS += inc/tdp_application_framework/displays/ref_count/RefCountDisplay.h
 
 SOURCES += src/displays/ref_count/RefCountDisplayFactory.cpp
 HEADERS += inc/tdp_application_framework/displays/ref_count/RefCountDisplayFactory.h
+
+
+SOURCES += src/displays/tab/TabDisplay.cpp
+HEADERS += inc/tdp_application_framework/displays/tab/TabDisplay.h
+
+SOURCES += src/displays/tab/TabDisplayFactory.cpp
+HEADERS += inc/tdp_application_framework/displays/tab/TabDisplayFactory.h
+
 
 #-- Main windows -----------------------------------------------------------------------------------
 SOURCES += src/main_windows/FileMenuMainWindow.cpp

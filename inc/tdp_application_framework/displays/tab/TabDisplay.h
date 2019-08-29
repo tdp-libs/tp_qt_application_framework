@@ -1,10 +1,11 @@
-#ifndef tdp_application_framework_RefCountDisplay_h
-#define tdp_application_framework_RefCountDisplay_h
+#ifndef tdp_application_framework_TabDisplay_h
+#define tdp_application_framework_TabDisplay_h
 
 #include "tdp_application_framework/AbstractDisplay.h"
 
 namespace tdp_application_framework
 {
+class DisplayManager;
 
 //##################################################################################################
 //! Displays the table of ref-counted objects.
@@ -14,7 +15,7 @@ object. This is mainly to keep track of memory usage, and to spot memory leaks. 
 table of reference counts.
 \ingroup Displays
 */
-class TDP_APPLICATION_FRAMEWORK_SHARED_EXPORT RefCountDisplay: public tdp_application_framework::AbstractDisplay
+class TDP_APPLICATION_FRAMEWORK_SHARED_EXPORT TabDisplay: public tdp_application_framework::AbstractDisplay
 {
   Q_OBJECT
 public:
@@ -22,12 +23,12 @@ public:
   //################################################################################################
   //! Constructor
   /*!
-  This is usually called by the RefCountDisplayFactory.
+  This is usually called by the TabDisplayFactory.
   */
-  RefCountDisplay(tdp_application_framework::AbstractDisplayFactory* displayFactory, QWidget* parent=nullptr);
+  TabDisplay(DisplayManager* displayManager, AbstractDisplayFactory* displayFactory, QWidget* parent=nullptr);
 
   //################################################################################################
-  ~RefCountDisplay() override;
+  ~TabDisplay() override;
 };
 
 }

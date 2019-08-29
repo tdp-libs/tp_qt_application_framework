@@ -12,6 +12,9 @@ RefCountDisplayFactory::RefCountDisplayFactory():
 }
 
 //##################################################################################################
+RefCountDisplayFactory::~RefCountDisplayFactory()=default;
+
+//##################################################################################################
 tdp_application_framework::AbstractDisplay* RefCountDisplayFactory::produceDisplay()
 {
   return new RefCountDisplay(this);

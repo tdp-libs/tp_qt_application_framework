@@ -33,4 +33,14 @@ void TabDisplay::loadState(const nlohmann::json& j)
 {
   m_tabWidget->loadState(j);
 }
+
+//################################################################################################
+void TabDisplay::setToolBarsVisible(bool visible)
+{
+  AbstractDisplay::setToolBarsVisible(visible);
+  m_tabWidget->setToolBarsVisible(visible);
+}
+
+
+
 }

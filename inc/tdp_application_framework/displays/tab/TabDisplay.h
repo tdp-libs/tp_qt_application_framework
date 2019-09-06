@@ -37,6 +37,9 @@ public:
   //################################################################################################
   void loadState(const nlohmann::json& j) override;
 
+  //################################################################################################
+  void setToolBarsVisible(bool visible) override;
+
 private:
   TabWidget* m_tabWidget;
 };

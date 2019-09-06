@@ -54,6 +54,8 @@ struct TabWidget::Private
   //################################################################################################
   void updateAddTab()
   {
+    tabWidget->setTabsClosable(toolBarVisible);
+
     if(!toolBarVisible)
     {
       delete addTab;
@@ -135,6 +137,8 @@ nlohmann::json TabWidget::saveState()const
     j["displays"].push_back(jj);
   }
 
+  j["Selected Index"] = d->tabWidget->currentIndex();
+
   return j;
 }
 
@@ -161,7 +165,8 @@ void TabWidget::loadState(const nlohmann::json& j)
       auto display = d->displayManager->produceDisplay(idx);
       if(display)
       {
-        d->tabWidget->insertTab(d->tabWidget->count()-1, display, display->displayFactory()->title());
+        int end = d->tabWidget->count()-(d->toolBarVisible?1:0);
+        d->tabWidget->insertTab(end, display, display->displayFactory()->title());
         display->loadState(TPJSON(jj, "Display State"));
       }
     }
@@ -170,6 +175,10 @@ void TabWidget::loadState(const nlohmann::json& j)
   {
 
   }
+
+  auto index = TPJSONInt(j, "Selected Index", 0);
+  if(index>=0 && index<d->tabWidget->count())
+    d->tabWidget->setCurrentIndex(index);
 }
 
 //##################################################################################################

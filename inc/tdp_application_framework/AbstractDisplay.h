@@ -80,6 +80,23 @@ public:
   virtual void loadState(const nlohmann::json& j);
 
   //################################################################################################
+  //! Set the visibility for display tool bars and config buttons
+  /*!
+  This allows the application to hide display configuration buttons and tool bars.
+
+  \param visible - Sets the visibility of the tool bars.
+  */
+  virtual void setToolBarsVisible(bool visible);
+
+  //################################################################################################
+  //! Returns the visibility for display tool bars and config buttons
+  /*!
+  \return Returns true if the display tool bars and config buttons are visible.
+  \sa setToolBarsVisible()
+  */
+  bool toolBarsVisible()const;
+
+  //################################################################################################
   //! Provide a widget that is used to configure the display
   /*!
   This should return a widget that can be used for configuring the display, this display should
@@ -109,6 +126,7 @@ public:
 
 private:
   AbstractDisplayFactory* m_displayFactory;
+  bool m_toolBarsVisible;
 };
 
 }

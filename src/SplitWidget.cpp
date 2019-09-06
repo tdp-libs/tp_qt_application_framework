@@ -363,6 +363,9 @@ void SplitWidget::setToolBarsVisible(bool visible)
 {
   d->toolBarVisible = visible;
 
+  if(d->display)
+    d->display->setToolBarsVisible(visible);
+
   if(d->toolBar)
     d->toolBar->setVisible(visible);
 

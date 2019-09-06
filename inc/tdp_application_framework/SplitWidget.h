@@ -61,7 +61,6 @@ public:
   */
   void loadState(const nlohmann::json& j);
 
-public slots:
   //################################################################################################
   //! Set the visibility for splitter headers
   /*!
@@ -72,7 +71,6 @@ public slots:
   */
   void setToolBarsVisible(bool visible);
 
-public:
   //################################################################################################
   //! Returns the visibility of the tool bars
   /*!

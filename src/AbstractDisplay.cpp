@@ -9,7 +9,8 @@ namespace tdp_application_framework
 //##################################################################################################
 AbstractDisplay::AbstractDisplay(AbstractDisplayFactory* displayFactory, QWidget* parent):
   QWidget(parent),
-  m_displayFactory(displayFactory)
+  m_displayFactory(displayFactory),
+  m_toolBarsVisible(true)
 {
 }
 
@@ -29,6 +30,18 @@ nlohmann::json AbstractDisplay::saveState()const
 void AbstractDisplay::loadState(const nlohmann::json& j)
 {
   TP_UNUSED(j);
+}
+
+//##################################################################################################
+void AbstractDisplay::setToolBarsVisible(bool visible)
+{
+  m_toolBarsVisible = visible;
+}
+
+//##################################################################################################
+bool AbstractDisplay::toolBarsVisible()const
+{
+  return m_toolBarsVisible;
 }
 
 //##################################################################################################

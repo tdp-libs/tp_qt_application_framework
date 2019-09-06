@@ -16,6 +16,9 @@ HEADERS += inc/tdp_application_framework/SplitWidget.h
 SOURCES += src/TabWidget.cpp
 HEADERS += inc/tdp_application_framework/TabWidget.h
 
+SOURCES += src/LockStatsWidget.cpp
+HEADERS += inc/tdp_application_framework/LockStatsWidget.h
+
 SOURCES += src/AbstractDisplay.cpp
 HEADERS += inc/tdp_application_framework/AbstractDisplay.h
 
@@ -37,6 +40,13 @@ HEADERS += inc/tdp_application_framework/displays/ref_count/RefCountDisplay.h
 
 SOURCES += src/displays/ref_count/RefCountDisplayFactory.cpp
 HEADERS += inc/tdp_application_framework/displays/ref_count/RefCountDisplayFactory.h
+
+
+SOURCES += src/displays/lock_stats/LockStatsDisplay.cpp
+HEADERS += inc/tdp_application_framework/displays/lock_stats/LockStatsDisplay.h
+
+SOURCES += src/displays/lock_stats/LockStatsDisplayFactory.cpp
+HEADERS += inc/tdp_application_framework/displays/lock_stats/LockStatsDisplayFactory.h
 
 
 SOURCES += src/displays/tab/TabDisplay.cpp

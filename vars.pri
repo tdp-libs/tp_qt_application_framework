@@ -19,6 +19,9 @@ HEADERS += inc/tdp_application_framework/TabWidget.h
 SOURCES += src/LockStatsWidget.cpp
 HEADERS += inc/tdp_application_framework/LockStatsWidget.h
 
+SOURCES += src/EventLatencyWidget.cpp
+HEADERS += inc/tdp_application_framework/EventLatencyWidget.h
+
 SOURCES += src/AbstractDisplay.cpp
 HEADERS += inc/tdp_application_framework/AbstractDisplay.h
 
@@ -47,6 +50,13 @@ HEADERS += inc/tdp_application_framework/displays/lock_stats/LockStatsDisplay.h
 
 SOURCES += src/displays/lock_stats/LockStatsDisplayFactory.cpp
 HEADERS += inc/tdp_application_framework/displays/lock_stats/LockStatsDisplayFactory.h
+
+
+SOURCES += src/displays/event_latency/EventLatencyDisplay.cpp
+HEADERS += inc/tdp_application_framework/displays/event_latency/EventLatencyDisplay.h
+
+SOURCES += src/displays/event_latency/EventLatencyDisplayFactory.cpp
+HEADERS += inc/tdp_application_framework/displays/event_latency/EventLatencyDisplayFactory.h
 
 
 SOURCES += src/displays/tab/TabDisplay.cpp

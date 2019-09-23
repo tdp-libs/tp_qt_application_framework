@@ -6,7 +6,7 @@ namespace tdp_application_framework
 
 //##################################################################################################
 EventLatencyDisplayFactory::EventLatencyDisplayFactory():
-  tdp_application_framework::AbstractDisplayFactory("Lock stats", "Lock stats")
+  tdp_application_framework::AbstractDisplayFactory("Event latency", "Event latency")
 {
 
 }

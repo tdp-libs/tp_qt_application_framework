@@ -9,7 +9,7 @@
 
 namespace tp_qt_application_framework
 {
-class tp_qt_APPLICATION_FRAMEWORK_SHARED_EXPORT DisplayManager;
+class TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT DisplayManager;
 
 //##################################################################################################
 //! Arranges displays in a splitter.
@@ -19,7 +19,7 @@ class tp_qt_APPLICATION_FRAMEWORK_SHARED_EXPORT DisplayManager;
 This class allows the user to arrange displays in splitters. See \link DisplayContains Display
 Containers \endlink for a list of classes that can be used for arranging displays.
 */
-class tp_qt_APPLICATION_FRAMEWORK_SHARED_EXPORT TabWidget: public QWidget
+class TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT TabWidget: public QWidget
 {
   Q_OBJECT
 public:

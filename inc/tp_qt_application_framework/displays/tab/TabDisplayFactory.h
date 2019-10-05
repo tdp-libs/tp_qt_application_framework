@@ -14,7 +14,7 @@ Some objects use tp_qt_utils::RefCount class to keep a count of the number of in
 object. This is mainly to keep track of memory usage, and to spot memory leaks. This class is used 
 to add a display containing the table of reference counts.
 */
-class tp_qt_APPLICATION_FRAMEWORK_SHARED_EXPORT TabDisplayFactory: public tp_qt_application_framework::AbstractDisplayFactory
+class TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT TabDisplayFactory: public tp_qt_application_framework::AbstractDisplayFactory
 {
 public:
   //################################################################################################

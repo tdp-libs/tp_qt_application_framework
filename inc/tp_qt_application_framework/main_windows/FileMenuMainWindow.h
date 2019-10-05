@@ -8,7 +8,7 @@ namespace tp_qt_application_framework
 class AbstractWorkspace;
 
 //##################################################################################################
-class tp_qt_APPLICATION_FRAMEWORK_SHARED_EXPORT FileMenuMainWindow: public AbstractMainWindow
+class TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT FileMenuMainWindow: public AbstractMainWindow
 {
   Q_OBJECT
 public:

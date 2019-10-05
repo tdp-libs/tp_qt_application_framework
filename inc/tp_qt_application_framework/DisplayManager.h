@@ -9,8 +9,8 @@ class QAbstractItemModel;
 
 namespace tp_qt_application_framework
 {
-class tp_qt_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractDisplayFactory;
-class tp_qt_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractDisplay;
+class TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractDisplayFactory;
+class TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractDisplay;
 
 //##################################################################################################
 //! A class for managing a list of displays
@@ -18,7 +18,7 @@ class tp_qt_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractDisplay;
 This class manages a list of displays, and proides a model that can be used to populate a combo box
 with the list.
 */
-class tp_qt_APPLICATION_FRAMEWORK_SHARED_EXPORT DisplayManager: public QObject
+class TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT DisplayManager: public QObject
 {
   Q_OBJECT
 public:

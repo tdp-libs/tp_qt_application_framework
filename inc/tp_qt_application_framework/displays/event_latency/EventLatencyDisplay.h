@@ -9,7 +9,7 @@ class EventLatencyWidget;
 
 //##################################################################################################
 //! Displays the table of mutex lock stats.
-class tp_qt_APPLICATION_FRAMEWORK_SHARED_EXPORT EventLatencyDisplay: public tp_qt_application_framework::AbstractDisplay
+class TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT EventLatencyDisplay: public tp_qt_application_framework::AbstractDisplay
 {
   Q_OBJECT
 public:

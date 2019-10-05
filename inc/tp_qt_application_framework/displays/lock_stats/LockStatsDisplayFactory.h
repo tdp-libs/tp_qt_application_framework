@@ -8,7 +8,7 @@ namespace tp_qt_application_framework
 
 //##################################################################################################
 //! Creates a display that shows a table of mutex lock stats.
-class tp_qt_APPLICATION_FRAMEWORK_SHARED_EXPORT LockStatsDisplayFactory: public tp_qt_application_framework::AbstractDisplayFactory
+class TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT LockStatsDisplayFactory: public tp_qt_application_framework::AbstractDisplayFactory
 {
 public:
   //################################################################################################

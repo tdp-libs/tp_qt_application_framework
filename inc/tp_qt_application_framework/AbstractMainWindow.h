@@ -14,7 +14,7 @@ namespace tp_qt_application_framework
 class AbstractWorkspace;
 
 //##################################################################################################
-class tp_qt_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractMainWindow: public QWidget
+class TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractMainWindow: public QWidget
 {
   Q_OBJECT
 public:

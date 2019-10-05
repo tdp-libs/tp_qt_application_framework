@@ -3,7 +3,7 @@ TEMPLATE = lib
 
 QT += widgets gui
 
-DEFINES += tp_qt_APPLICATION_FRAMEWORK_LIBRARY
+DEFINES += TP_QT_APPLICATION_FRAMEWORK_LIBRARY
 
 RESOURCES += src/tp_qt_application_framework.qrc
 

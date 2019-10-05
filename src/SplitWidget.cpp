@@ -67,7 +67,7 @@ struct SplitWidget::Private
     splitVerticalAction(new QAction(QIcon(":/tp_qt_application_framework/SplitVertically.png"), "Split Vertical", q)),
     configureAction(new QAction(QIcon(":/tp_qt_application_framework/Configure.png"), "Configure...", q))
   {
-    tp_qt_REF("tp_qt_application_framework::SplitWidget");
+    TP_REF("tp_qt_application_framework::SplitWidget");
 
     connect(closeAction, SIGNAL(triggered()), q, SLOT(closeTriggered()));
     connect(splitHorizontalAction, SIGNAL(triggered()), q, SLOT(splitHorizontalyTriggered()));
@@ -78,7 +78,7 @@ struct SplitWidget::Private
   //################################################################################################
   ~Private()
   {
-    tp_qt_UNREF("tp_qt_application_framework::SplitWidget");
+    TP_UNREF("tp_qt_application_framework::SplitWidget");
   }
 
   //################################################################################################

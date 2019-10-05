@@ -33,7 +33,7 @@ to \link DisplayContainers Display Containers \endlink and managed by the Displa
 It is normal for a display to be paired with an \link AbstractDisplayFactory \endlink so that it can be added by a
 user, and saved/restored.
 */
-class tp_qt_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractDisplay: public QWidget
+class TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractDisplay: public QWidget
 {
 public:
   //################################################################################################

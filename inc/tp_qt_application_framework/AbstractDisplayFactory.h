@@ -20,7 +20,7 @@ class AbstractDisplay;
 Sub-classes of AbstractDisplayFactory are usually paired with \link AbstractDisplay \endlink, to
 allow displays to be dynamicaly added to the user interface, and be saved/restored.
 */
-class tp_qt_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractDisplayFactory
+class TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractDisplayFactory
 {
 public:
   //################################################################################################

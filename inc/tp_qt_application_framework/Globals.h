@@ -3,10 +3,10 @@
 
 #include "tp_utils/Globals.h"
 
-#if defined(tp_qt_APPLICATION_FRAMEWORK_LIBRARY)
-#  define tp_qt_APPLICATION_FRAMEWORK_SHARED_EXPORT TP_EXPORT
+#if defined(TP_QT_APPLICATION_FRAMEWORK_LIBRARY)
+#  define TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT TP_EXPORT
 #else
-#  define tp_qt_APPLICATION_FRAMEWORK_SHARED_EXPORT TP_IMPORT
+#  define TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT TP_IMPORT
 #endif
 
 //##################################################################################################

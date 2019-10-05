@@ -1,16 +1,16 @@
-#ifndef tdp_application_framework_DisplayManager_h
-#define tdp_application_framework_DisplayManager_h
+#ifndef tp_qt_application_framework_DisplayManager_h
+#define tp_qt_application_framework_DisplayManager_h
 
-#include "tdp_application_framework/Globals.h"
+#include "tp_qt_application_framework/Globals.h"
 
 #include <QObject>
 
 class QAbstractItemModel;
 
-namespace tdp_application_framework
+namespace tp_qt_application_framework
 {
-class TDP_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractDisplayFactory;
-class TDP_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractDisplay;
+class tp_qt_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractDisplayFactory;
+class tp_qt_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractDisplay;
 
 //##################################################################################################
 //! A class for managing a list of displays
@@ -18,7 +18,7 @@ class TDP_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractDisplay;
 This class manages a list of displays, and proides a model that can be used to populate a combo box
 with the list.
 */
-class TDP_APPLICATION_FRAMEWORK_SHARED_EXPORT DisplayManager: public QObject
+class tp_qt_APPLICATION_FRAMEWORK_SHARED_EXPORT DisplayManager: public QObject
 {
   Q_OBJECT
 public:

@@ -1,20 +1,20 @@
-#ifndef tdp_application_framework_RefCountDisplay_h
-#define tdp_application_framework_RefCountDisplay_h
+#ifndef tp_qt_application_framework_RefCountDisplay_h
+#define tp_qt_application_framework_RefCountDisplay_h
 
-#include "tdp_application_framework/AbstractDisplay.h"
+#include "tp_qt_application_framework/AbstractDisplay.h"
 
-namespace tdp_application_framework
+namespace tp_qt_application_framework
 {
 
 //##################################################################################################
 //! Displays the table of ref-counted objects.
 /*!
-Some objects use tdp_qt_utils::RefCount class to keep a count of the number of instances of that 
+Some objects use tp_qt_utils::RefCount class to keep a count of the number of instances of that 
 object. This is mainly to keep track of memory usage, and to spot memory leaks. This display shows 
 table of reference counts.
 \ingroup Displays
 */
-class TDP_APPLICATION_FRAMEWORK_SHARED_EXPORT RefCountDisplay: public tdp_application_framework::AbstractDisplay
+class tp_qt_APPLICATION_FRAMEWORK_SHARED_EXPORT RefCountDisplay: public tp_qt_application_framework::AbstractDisplay
 {
   Q_OBJECT
 public:
@@ -24,7 +24,7 @@ public:
   /*!
   This is usually called by the RefCountDisplayFactory.
   */
-  RefCountDisplay(tdp_application_framework::AbstractDisplayFactory* displayFactory, QWidget* parent=nullptr);
+  RefCountDisplay(tp_qt_application_framework::AbstractDisplayFactory* displayFactory, QWidget* parent=nullptr);
 
   //################################################################################################
   ~RefCountDisplay() override;

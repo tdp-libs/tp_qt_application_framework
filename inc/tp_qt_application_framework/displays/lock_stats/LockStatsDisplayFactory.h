@@ -1,14 +1,14 @@
-#ifndef tdp_application_framework_LockStatsDisplayFactory_h
-#define tdp_application_framework_LockStatsDisplayFactory_h
+#ifndef tp_qt_application_framework_LockStatsDisplayFactory_h
+#define tp_qt_application_framework_LockStatsDisplayFactory_h
 
-#include "tdp_application_framework/AbstractDisplayFactory.h"
+#include "tp_qt_application_framework/AbstractDisplayFactory.h"
 
-namespace tdp_application_framework
+namespace tp_qt_application_framework
 {
 
 //##################################################################################################
 //! Creates a display that shows a table of mutex lock stats.
-class TDP_APPLICATION_FRAMEWORK_SHARED_EXPORT LockStatsDisplayFactory: public tdp_application_framework::AbstractDisplayFactory
+class tp_qt_APPLICATION_FRAMEWORK_SHARED_EXPORT LockStatsDisplayFactory: public tp_qt_application_framework::AbstractDisplayFactory
 {
 public:
   //################################################################################################
@@ -18,7 +18,7 @@ public:
   ~LockStatsDisplayFactory() override;
 
   //################################################################################################
-  tdp_application_framework::AbstractDisplay* produceDisplay() override;
+  tp_qt_application_framework::AbstractDisplay* produceDisplay() override;
 };
 
 }

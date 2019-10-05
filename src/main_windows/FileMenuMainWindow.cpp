@@ -1,12 +1,12 @@
-#include "tdp_application_framework/main_windows/FileMenuMainWindow.h"
-#include "tdp_application_framework/AbstractWorkspace.h"
+#include "tp_qt_application_framework/main_windows/FileMenuMainWindow.h"
+#include "tp_qt_application_framework/AbstractWorkspace.h"
 
 #include <QMenu>
 #include <QMenuBar>
 #include <QVBoxLayout>
 #include <QPointer>
 
-namespace tdp_application_framework
+namespace tp_qt_application_framework
 {
 
 //##################################################################################################

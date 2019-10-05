@@ -1,7 +1,7 @@
-#include "tdp_application_framework/SplitWidget.h"
-#include "tdp_application_framework/DisplayManager.h"
-#include "tdp_application_framework/AbstractDisplay.h"
-#include "tdp_application_framework/AbstractDisplayFactory.h"
+#include "tp_qt_application_framework/SplitWidget.h"
+#include "tp_qt_application_framework/DisplayManager.h"
+#include "tp_qt_application_framework/AbstractDisplay.h"
+#include "tp_qt_application_framework/AbstractDisplayFactory.h"
 
 #include "tp_utils/RefCount.h"
 #include "tp_utils/DebugUtils.h"
@@ -25,7 +25,7 @@
 
 #include <QDebug>
 
-namespace tdp_application_framework
+namespace tp_qt_application_framework
 {
 
 //##################################################################################################
@@ -62,12 +62,12 @@ struct SplitWidget::Private
   Private(SplitWidget* q_, DisplayManager* displayManager_):
     q(q_),
     displayManager(displayManager_),
-    closeAction(new QAction(QIcon(":/tdp_application_framework/Close.png"), "Close", q)),
-    splitHorizontalAction(new QAction(QIcon(":/tdp_application_framework/SplitHorizontally.png"), "Split Horizontal", q)),
-    splitVerticalAction(new QAction(QIcon(":/tdp_application_framework/SplitVertically.png"), "Split Vertical", q)),
-    configureAction(new QAction(QIcon(":/tdp_application_framework/Configure.png"), "Configure...", q))
+    closeAction(new QAction(QIcon(":/tp_qt_application_framework/Close.png"), "Close", q)),
+    splitHorizontalAction(new QAction(QIcon(":/tp_qt_application_framework/SplitHorizontally.png"), "Split Horizontal", q)),
+    splitVerticalAction(new QAction(QIcon(":/tp_qt_application_framework/SplitVertically.png"), "Split Vertical", q)),
+    configureAction(new QAction(QIcon(":/tp_qt_application_framework/Configure.png"), "Configure...", q))
   {
-    TDP_REF("tdp_application_framework::SplitWidget");
+    tp_qt_REF("tp_qt_application_framework::SplitWidget");
 
     connect(closeAction, SIGNAL(triggered()), q, SLOT(closeTriggered()));
     connect(splitHorizontalAction, SIGNAL(triggered()), q, SLOT(splitHorizontalyTriggered()));
@@ -78,7 +78,7 @@ struct SplitWidget::Private
   //################################################################################################
   ~Private()
   {
-    TDP_UNREF("tdp_application_framework::SplitWidget");
+    tp_qt_UNREF("tp_qt_application_framework::SplitWidget");
   }
 
   //################################################################################################
@@ -146,7 +146,7 @@ struct SplitWidget::Private
                            "}"
                            "QComboBox::down-arrow"
                            "{"
-                           "  image: url(:/tdp_application_framework/SplitWidgetComboArrow.png);"
+                           "  image: url(:/tp_qt_application_framework/SplitWidgetComboArrow.png);"
                            "}"
                            "QComboBox::drop-down"
                            "{"

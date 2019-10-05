@@ -1,7 +1,7 @@
-#include "tdp_application_framework/TabWidget.h"
-#include "tdp_application_framework/DisplayManager.h"
-#include "tdp_application_framework/AbstractDisplay.h"
-#include "tdp_application_framework/AbstractDisplayFactory.h"
+#include "tp_qt_application_framework/TabWidget.h"
+#include "tp_qt_application_framework/DisplayManager.h"
+#include "tp_qt_application_framework/AbstractDisplay.h"
+#include "tp_qt_application_framework/AbstractDisplayFactory.h"
 
 #include "tp_utils/RefCount.h"
 #include "tp_utils/DebugUtils.h"
@@ -17,13 +17,13 @@
 
 #include <QDebug>
 
-namespace tdp_application_framework
+namespace tp_qt_application_framework
 {
 
 //##################################################################################################
 struct TabWidget::Private
 {
-  TDP_REF_COUNT_OBJECTS("tdp_application_framework::TabWidget");
+  tp_qt_REF_COUNT_OBJECTS("tp_qt_application_framework::TabWidget");
 
   TP_NONCOPYABLE(Private);
   TabWidget* q;

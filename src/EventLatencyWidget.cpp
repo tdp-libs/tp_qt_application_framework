@@ -1,7 +1,7 @@
-#include "tdp_application_framework/EventLatencyWidget.h"
+#include "tp_qt_application_framework/EventLatencyWidget.h"
 
-#include "tdp_qt_utils/TimerCallback.h"
-#include "tdp_qt_utils/EventLatency.h"
+#include "tp_qt_utils/TimerCallback.h"
+#include "tp_qt_utils/EventLatency.h"
 
 #include "tp_utils/DebugUtils.h"
 #include "tp_utils/JSONUtils.h"
@@ -11,7 +11,7 @@
 
 #include <QDebug>
 
-namespace tdp_application_framework
+namespace tp_qt_application_framework
 {
 
 //##################################################################################################
@@ -21,7 +21,7 @@ struct EventLatencyWidget::Private
 
   QTextEdit* textEdit{nullptr};
 
-  tdp_qt_utils::TimerCallback timerCallback;
+  tp_qt_utils::TimerCallback timerCallback;
 
   //################################################################################################
   Private():
@@ -33,7 +33,7 @@ struct EventLatencyWidget::Private
   //################################################################################################
   void updateDisplay()
   {
-    textEdit->setPlainText(QString::fromStdString(tdp_qt_utils::EventLatency::takeResults()));
+    textEdit->setPlainText(QString::fromStdString(tp_qt_utils::EventLatency::takeResults()));
   }
 };
 

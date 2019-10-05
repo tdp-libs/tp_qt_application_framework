@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/tdp_application_framework">
+    <qresource prefix="/tp_qt_application_framework">
         <file alias="SplitVertically.png">resources/SplitVertically.png</file>
         <file alias="SplitHorizontally.png">resources/SplitHorizontally.png</file>
         <file alias="Close.png">resources/Close.png</file>

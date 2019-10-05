@@ -1,12 +1,12 @@
-#include "tdp_application_framework/AbstractMainWindow.h"
-#include "tdp_application_framework/AbstractWorkspace.h"
+#include "tp_qt_application_framework/AbstractMainWindow.h"
+#include "tp_qt_application_framework/AbstractWorkspace.h"
 
 #include "tp_utils/JSONUtils.h"
 
 #include <QAction>
 #include <QMessageBox>
 
-namespace tdp_application_framework
+namespace tp_qt_application_framework
 {
 
 //##################################################################################################

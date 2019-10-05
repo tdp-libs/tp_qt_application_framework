@@ -1,15 +1,15 @@
-#ifndef tdp_application_framework_TabWidget_h
-#define tdp_application_framework_TabWidget_h
+#ifndef tp_qt_application_framework_TabWidget_h
+#define tp_qt_application_framework_TabWidget_h
 
-#include "tdp_application_framework/Globals.h"
+#include "tp_qt_application_framework/Globals.h"
 
 #include "json.hpp"
 
 #include <QWidget>
 
-namespace tdp_application_framework
+namespace tp_qt_application_framework
 {
-class TDP_APPLICATION_FRAMEWORK_SHARED_EXPORT DisplayManager;
+class tp_qt_APPLICATION_FRAMEWORK_SHARED_EXPORT DisplayManager;
 
 //##################################################################################################
 //! Arranges displays in a splitter.
@@ -19,7 +19,7 @@ class TDP_APPLICATION_FRAMEWORK_SHARED_EXPORT DisplayManager;
 This class allows the user to arrange displays in splitters. See \link DisplayContains Display
 Containers \endlink for a list of classes that can be used for arranging displays.
 */
-class TDP_APPLICATION_FRAMEWORK_SHARED_EXPORT TabWidget: public QWidget
+class tp_qt_APPLICATION_FRAMEWORK_SHARED_EXPORT TabWidget: public QWidget
 {
   Q_OBJECT
 public:

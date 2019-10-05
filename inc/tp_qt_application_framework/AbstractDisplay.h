@@ -1,13 +1,13 @@
-#ifndef tdp_application_framework_AbstractDisplay_h
-#define tdp_application_framework_AbstractDisplay_h
+#ifndef tp_qt_application_framework_AbstractDisplay_h
+#define tp_qt_application_framework_AbstractDisplay_h
 
-#include "tdp_application_framework/Globals.h"
+#include "tp_qt_application_framework/Globals.h"
 
 #include "json.hpp"
 
 #include <QWidget>
 
-namespace tdp_application_framework
+namespace tp_qt_application_framework
 {
 class AbstractDisplayFactory;
 
@@ -33,7 +33,7 @@ to \link DisplayContainers Display Containers \endlink and managed by the Displa
 It is normal for a display to be paired with an \link AbstractDisplayFactory \endlink so that it can be added by a
 user, and saved/restored.
 */
-class TDP_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractDisplay: public QWidget
+class tp_qt_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractDisplay: public QWidget
 {
 public:
   //################################################################################################

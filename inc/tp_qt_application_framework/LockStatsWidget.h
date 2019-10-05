@@ -1,24 +1,24 @@
-#ifndef tdp_application_framework_EventLatencyWidget_h
-#define tdp_application_framework_EventLatencyWidget_h
+#ifndef tp_qt_application_framework_LockStatsWidget_h
+#define tp_qt_application_framework_LockStatsWidget_h
 
-#include "tdp_application_framework/Globals.h"
+#include "tp_qt_application_framework/Globals.h"
 
 #include <QWidget>
 
-namespace tdp_application_framework
+namespace tp_qt_application_framework
 {
 
 //##################################################################################################
 //! Displays the lock stats for TPMutex
-class TDP_APPLICATION_FRAMEWORK_SHARED_EXPORT EventLatencyWidget: public QWidget
+class tp_qt_APPLICATION_FRAMEWORK_SHARED_EXPORT LockStatsWidget: public QWidget
 {
   Q_OBJECT
 public:
   //################################################################################################
-  EventLatencyWidget(QWidget* parent=nullptr);
+  LockStatsWidget(QWidget* parent=nullptr);
 
   //################################################################################################
-  virtual ~EventLatencyWidget();
+  virtual ~LockStatsWidget();
 
 private:
   struct Private;

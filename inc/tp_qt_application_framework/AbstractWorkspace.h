@@ -1,18 +1,18 @@
-#ifndef tdp_application_framework_AbstractWorkspace_h
-#define tdp_application_framework_AbstractWorkspace_h
+#ifndef tp_qt_application_framework_AbstractWorkspace_h
+#define tp_qt_application_framework_AbstractWorkspace_h
 
-#include "tdp_application_framework/Globals.h"
+#include "tp_qt_application_framework/Globals.h"
 
 #include "json.hpp"
 
 #include <QWidget>
 
-namespace tdp_application_framework
+namespace tp_qt_application_framework
 {
 class AbstractMainWindow;
 
 //##################################################################################################
-class TDP_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractWorkspace: public QWidget
+class tp_qt_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractWorkspace: public QWidget
 {
   Q_OBJECT
 public:

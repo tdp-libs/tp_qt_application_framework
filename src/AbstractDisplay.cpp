@@ -1,8 +1,8 @@
-#include "tdp_application_framework/AbstractDisplay.h"
+#include "tp_qt_application_framework/AbstractDisplay.h"
 
 #include <QDebug>
 
-namespace tdp_application_framework
+namespace tp_qt_application_framework
 {
 //int count =0;
 

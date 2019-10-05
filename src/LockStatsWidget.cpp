@@ -1,6 +1,6 @@
-#include "tdp_application_framework/LockStatsWidget.h"
+#include "tp_qt_application_framework/LockStatsWidget.h"
 
-#include "tdp_qt_utils/TimerCallback.h"
+#include "tp_qt_utils/TimerCallback.h"
 
 #include "tp_utils/MutexUtils.h"
 #include "tp_utils/DebugUtils.h"
@@ -11,7 +11,7 @@
 
 #include <QDebug>
 
-namespace tdp_application_framework
+namespace tp_qt_application_framework
 {
 
 //##################################################################################################
@@ -21,7 +21,7 @@ struct LockStatsWidget::Private
 
   QTextEdit* textEdit{nullptr};
 
-  tdp_qt_utils::TimerCallback timerCallback;
+  tp_qt_utils::TimerCallback timerCallback;
 
   //################################################################################################
   Private():

@@ -1,9 +1,9 @@
-#include "tdp_application_framework/AbstractWorkspace.h"
-#include "tdp_application_framework/AbstractMainWindow.h"
+#include "tp_qt_application_framework/AbstractWorkspace.h"
+#include "tp_qt_application_framework/AbstractMainWindow.h"
 
 #include <QWidget>
 
-namespace tdp_application_framework
+namespace tp_qt_application_framework
 {
 
 //##################################################################################################

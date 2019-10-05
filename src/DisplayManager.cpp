@@ -1,12 +1,12 @@
-#include "tdp_application_framework/DisplayManager.h"
-#include "tdp_application_framework/AbstractDisplayFactory.h"
-#include "tdp_application_framework/AbstractDisplay.h"
+#include "tp_qt_application_framework/DisplayManager.h"
+#include "tp_qt_application_framework/AbstractDisplayFactory.h"
+#include "tp_qt_application_framework/AbstractDisplay.h"
 
 #include <QAbstractItemModel>
 #include <QList>
 #include <QStringListModel>
 
-namespace tdp_application_framework
+namespace tp_qt_application_framework
 {
 
 struct DisplayManager::Private

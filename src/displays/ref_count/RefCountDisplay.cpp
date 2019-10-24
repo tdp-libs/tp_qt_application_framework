@@ -1,5 +1,4 @@
 #include "tp_qt_application_framework/displays/ref_count/RefCountDisplay.h"
-#include "tp_qt_application_framework/displays/ref_count/RefCountDisplayFactory.h"
 
 #include "tp_qt_widgets/RefCountWidget.h"
 

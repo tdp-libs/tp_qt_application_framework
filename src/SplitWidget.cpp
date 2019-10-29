@@ -236,6 +236,8 @@ SplitWidget::SplitWidget(DisplayManager *displayManager, QWidget* parent):
   QWidget(parent),
   d(new Private(this, displayManager))
 {
+  TP_QT_ADD_TOOL_TIP();
+
   (new QVBoxLayout(this))->setContentsMargins(0, 0, 0, 0);
   d->makeEmptyContent();
 }

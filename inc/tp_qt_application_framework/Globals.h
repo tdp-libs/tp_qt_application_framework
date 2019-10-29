@@ -1,7 +1,7 @@
 #ifndef tp_qt_application_framework_Globals_h
 #define tp_qt_application_framework_Globals_h
 
-#include "tp_utils/Globals.h"
+#include "tp_qt_utils/Globals.h"
 
 #if defined(TP_QT_APPLICATION_FRAMEWORK_LIBRARY)
 #  define TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT TP_EXPORT

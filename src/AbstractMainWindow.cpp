@@ -38,7 +38,7 @@ AbstractMainWindow::AbstractMainWindow(QWidget* parent):
   QWidget(parent),
   d(new Private())
 {
-
+  TP_QT_ADD_TOOL_TIP();
 }
 
 //##################################################################################################

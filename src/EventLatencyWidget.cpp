@@ -42,6 +42,8 @@ EventLatencyWidget::EventLatencyWidget(QWidget* parent):
   QWidget(parent),
   d(new Private)
 {
+  TP_QT_ADD_TOOL_TIP();
+
   auto l = new QVBoxLayout(this);
   l->setContentsMargins(0, 0, 0, 0);
 

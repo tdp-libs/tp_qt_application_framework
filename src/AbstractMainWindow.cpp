@@ -12,6 +12,10 @@ namespace tp_qt_application_framework
 //##################################################################################################
 struct AbstractMainWindow::Private
 {
+  TP_REF_COUNT_OBJECTS("tp_qt_application_framework::AbstractMainWindow::Private");
+  TP_NONCOPYABLE(Private);
+  Private() = default;
+
   QList<AbstractWorkspace*> workspaces;
   AbstractWorkspace* currentWorkspace{nullptr};
   bool questionExit{true};

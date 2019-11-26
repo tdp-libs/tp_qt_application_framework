@@ -12,7 +12,9 @@ namespace tp_qt_application_framework
 //##################################################################################################
 struct FileMenuMainWindow::Private
 {
+  TP_REF_COUNT_OBJECTS("tp_qt_application_framework::FileMenuMainWindow::Private");
   TP_NONCOPYABLE(Private);
+
   FileMenuMainWindow* q;
 
   QPointer<QMenuBar>    menuBar;

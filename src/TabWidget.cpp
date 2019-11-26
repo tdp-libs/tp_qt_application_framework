@@ -23,9 +23,9 @@ namespace tp_qt_application_framework
 //##################################################################################################
 struct TabWidget::Private
 {
-  TP_REF_COUNT_OBJECTS("tp_qt_application_framework::TabWidget");
-
+  TP_REF_COUNT_OBJECTS("tp_qt_application_framework::TabWidget::Private");
   TP_NONCOPYABLE(Private);
+
   TabWidget* q;
   QTabWidget* tabWidget{nullptr};
 

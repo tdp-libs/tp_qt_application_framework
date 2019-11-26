@@ -17,6 +17,7 @@ namespace tp_qt_application_framework
 //##################################################################################################
 struct LockStatsWidget::Private
 {
+  TP_REF_COUNT_OBJECTS("tp_qt_application_framework::LockStatsWidget::Private");
   TP_NONCOPYABLE(Private);
 
   QTextEdit* textEdit{nullptr};
@@ -33,7 +34,9 @@ struct LockStatsWidget::Private
   //################################################################################################
   void updateDisplay()
   {
+#ifdef TP_ENABLE_MUTEX_TIME
     textEdit->setPlainText(QString::fromStdString(tp_utils::LockStats::takeResults()));
+#endif
   }
 };
 

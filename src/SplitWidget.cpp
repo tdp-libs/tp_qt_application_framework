@@ -31,7 +31,9 @@ namespace tp_qt_application_framework
 //##################################################################################################
 struct SplitWidget::Private
 {
+  TP_REF_COUNT_OBJECTS("tp_qt_application_framework::SplitWidget::Private");
   TP_NONCOPYABLE(Private);
+
   SplitWidget* q;
   QPointer<SplitWidget> parentSplitWidget;
 

@@ -9,13 +9,18 @@
 namespace tp_qt_application_framework
 {
 
+//##################################################################################################
 struct DisplayManager::Private
 {
+  TP_REF_COUNT_OBJECTS("tp_qt_application_framework::DisplayManager::Private");
+  TP_NONCOPYABLE(Private);
+
   DisplayManager* q;
 
   QList<AbstractDisplayFactory*> displayFactories;
   QStringListModel* factoriesModel;
 
+  //################################################################################################
   Private(DisplayManager* q_):
     q(q_),
     factoriesModel(new QStringListModel(q))
@@ -23,6 +28,7 @@ struct DisplayManager::Private
 
   }
 
+  //################################################################################################
   void updateModel()
   {
     QStringList factories;
@@ -36,6 +42,7 @@ struct DisplayManager::Private
   }
 };
 
+//##################################################################################################
 DisplayManager::DisplayManager(QObject* parent):
   QObject(parent),
   d(new Private(this))
@@ -43,6 +50,7 @@ DisplayManager::DisplayManager(QObject* parent):
 
 }
 
+//##################################################################################################
 DisplayManager::~DisplayManager()
 {
   qDeleteAll(d->displayFactories);

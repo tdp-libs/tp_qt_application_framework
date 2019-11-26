@@ -9,6 +9,9 @@ namespace tp_qt_application_framework
 //##################################################################################################
 struct AbstractWorkspace::Private
 {
+  TP_REF_COUNT_OBJECTS("tp_qt_application_framework::AbstractWorkspace::Private");
+  TP_NONCOPYABLE(Private);
+
   std::string name;
   AbstractMainWindow* mainWindow{nullptr};
 

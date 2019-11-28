@@ -8,7 +8,7 @@
 
 #include <QTextEdit>
 #include <QBoxLayout>
-
+#include <QScrollBar>
 #include <QDebug>
 
 namespace tp_qt_application_framework
@@ -34,8 +34,13 @@ struct LockStatsWidget::Private
   //################################################################################################
   void updateDisplay()
   {
+    int v=[&]{auto vs = textEdit->verticalScrollBar(); return vs?vs->value():0;}();
+    TP_CLEANUP([&]{auto vs = textEdit->verticalScrollBar(); if(vs)vs->setValue(v);});
+
 #ifdef TP_ENABLE_MUTEX_TIME
     textEdit->setPlainText(QString::fromStdString(tp_utils::LockStats::takeResults()));
+#else
+    textEdit->setPlainText("Define TP_ENABLE_MUTEX_TIME in project.inc and rebuild for this display to work.");
 #endif
   }
 };

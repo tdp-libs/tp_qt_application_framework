@@ -8,7 +8,7 @@
 
 #include <QTextEdit>
 #include <QBoxLayout>
-
+#include <QScrollBar>
 #include <QDebug>
 
 namespace tp_qt_application_framework
@@ -34,6 +34,9 @@ struct EventLatencyWidget::Private
   //################################################################################################
   void updateDisplay()
   {
+    int v=[&]{auto vs = textEdit->verticalScrollBar(); return vs?vs->value():0;}();
+    TP_CLEANUP([&]{auto vs = textEdit->verticalScrollBar(); if(vs)vs->setValue(v);});
+
     textEdit->setPlainText(QString::fromStdString(tp_qt_utils::EventLatency::takeResults()));
   }
 };

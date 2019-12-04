@@ -27,8 +27,6 @@ AbstractWorkspace::AbstractWorkspace(const std::string& name, QWidget* parent):
   QWidget(parent),
   d(new Private(name))
 {
-  TP_QT_ADD_TOOL_TIP();
-
   setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 }
 

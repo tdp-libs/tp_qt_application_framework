@@ -12,7 +12,7 @@ AbstractDisplay::AbstractDisplay(AbstractDisplayFactory* displayFactory, QWidget
   m_displayFactory(displayFactory),
   m_toolBarsVisible(true)
 {
-  TP_QT_ADD_TOOL_TIP();
+
 }
 
 //##################################################################################################

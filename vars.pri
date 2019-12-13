@@ -19,6 +19,9 @@ HEADERS += inc/tp_qt_application_framework/TabWidget.h
 SOURCES += src/LockStatsWidget.cpp
 HEADERS += inc/tp_qt_application_framework/LockStatsWidget.h
 
+SOURCES += src/FunctionTimeWidget.cpp
+HEADERS += inc/tp_qt_application_framework/FunctionTimeWidget.h
+
 SOURCES += src/EventLatencyWidget.cpp
 HEADERS += inc/tp_qt_application_framework/EventLatencyWidget.h
 
@@ -50,6 +53,13 @@ HEADERS += inc/tp_qt_application_framework/displays/lock_stats/LockStatsDisplay.
 
 SOURCES += src/displays/lock_stats/LockStatsDisplayFactory.cpp
 HEADERS += inc/tp_qt_application_framework/displays/lock_stats/LockStatsDisplayFactory.h
+
+
+SOURCES += src/displays/function_time/FunctionTimeDisplay.cpp
+HEADERS += inc/tp_qt_application_framework/displays/function_time/FunctionTimeDisplay.h
+
+SOURCES += src/displays/function_time/FunctionTimeDisplayFactory.cpp
+HEADERS += inc/tp_qt_application_framework/displays/function_time/FunctionTimeDisplayFactory.h
 
 
 SOURCES += src/displays/event_latency/EventLatencyDisplay.cpp

@@ -98,7 +98,7 @@ struct SplitWidget::Private
     contentCombo->setModel(displayManager->factoriesModel());
     connect(contentCombo, SIGNAL(activated(int)), q, SLOT(factoryComboActivated(int)));
     toolBar->addWidget(contentCombo);
-
+    contentCombo->setCurrentIndex(displayIndex);
 
     if(separator)
       separator->deleteLater();
@@ -205,7 +205,6 @@ struct SplitWidget::Private
     q->layout()->addWidget(splitter);
 
     a = new SplitWidget(displayManager, stateA);
-    //a->d->makeEmptyContent();
     a->setParentSplitWidget(q);
     a->setToolBarsVisible(toolBarVisible);
     splitter->addWidget(a);
@@ -337,10 +336,8 @@ void SplitWidget::loadState(const nlohmann::json& j)
     {
       if(d->display)
       {
-        //d->display->setParent(nullptr);
         delete d->display;
         d->display = nullptr;
-        //d->display->deleteLater();
       }
 
       int index = d->displayManager->factoryIndex(QString::fromStdString(factoryID));
@@ -405,6 +402,7 @@ void SplitWidget::closeTriggered()
     }
     else
     {
+      tpDebug() << "B";
       SplitWidget* otherSplitWidget = nullptr;
       Private* d1 = d->parentSplitWidget->d;
       Private* d2 = nullptr;

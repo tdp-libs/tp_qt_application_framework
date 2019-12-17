@@ -119,6 +119,8 @@ struct SplitWidget::Private
     if(content || toolBar)
       return;
 
+    displayIndex = 0;
+
     content = new QWidget();
     auto layout = new QVBoxLayout(content);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -402,7 +404,6 @@ void SplitWidget::closeTriggered()
     }
     else
     {
-      tpDebug() << "B";
       SplitWidget* otherSplitWidget = nullptr;
       Private* d1 = d->parentSplitWidget->d;
       Private* d2 = nullptr;
@@ -430,6 +431,7 @@ void SplitWidget::closeTriggered()
       d1->displayFrame = d2->displayFrame;
       d1->display = d2->display;
       d1->displayIndex = d2->displayIndex;
+
       d1->addActions();
 
       d2->a = nullptr;

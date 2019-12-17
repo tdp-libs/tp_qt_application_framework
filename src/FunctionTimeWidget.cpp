@@ -1,5 +1,7 @@
 #include "tp_qt_application_framework/FunctionTimeWidget.h"
 
+#include "tp_qt_widgets/Globals.h"
+
 #include "tp_qt_utils/TimerCallback.h"
 
 #include "tp_utils/TimeUtils.h"
@@ -36,6 +38,7 @@ struct FunctionTimeWidget::Private
   {
     int v=[&]{auto vs = textEdit->verticalScrollBar(); return vs?vs->value():0;}();
     TP_CLEANUP([&]{auto vs = textEdit->verticalScrollBar(); if(vs)vs->setValue(v);});
+    TP_CLEANUP(tp_qt_widgets::keepTextSelection(textEdit));
 
 #ifdef TP_ENABLE_FUNCTION_TIME
     textEdit->setPlainText(QString::fromStdString(tp_utils::FunctionTimeStats::takeResults()));

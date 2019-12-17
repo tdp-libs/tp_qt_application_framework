@@ -1,5 +1,7 @@
 #include "tp_qt_application_framework/EventLatencyWidget.h"
 
+#include "tp_qt_widgets/Globals.h"
+
 #include "tp_qt_utils/TimerCallback.h"
 #include "tp_qt_utils/EventLatency.h"
 
@@ -36,6 +38,7 @@ struct EventLatencyWidget::Private
   {
     int v=[&]{auto vs = textEdit->verticalScrollBar(); return vs?vs->value():0;}();
     TP_CLEANUP([&]{auto vs = textEdit->verticalScrollBar(); if(vs)vs->setValue(v);});
+    TP_CLEANUP(tp_qt_widgets::keepTextSelection(textEdit));
 
     textEdit->setPlainText(QString::fromStdString(tp_qt_utils::EventLatency::takeResults()));
   }

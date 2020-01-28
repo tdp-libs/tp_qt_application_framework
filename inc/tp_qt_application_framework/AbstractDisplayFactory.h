@@ -66,14 +66,13 @@ private:
 };
 
 //##################################################################################################
-template<typename T>
 class DisplayFactory : public AbstractDisplayFactory
 {
 public:
   //################################################################################################
-  DisplayFactory(const QString& title, const QString& id, const tp_utils::Interface* interface):
+  DisplayFactory(const QString& title, const QString& id, const std::function<tp_qt_application_framework::AbstractDisplay*(tp_qt_application_framework::DisplayFactory*)>& produceDisplay):
     AbstractDisplayFactory(title, id),
-    m_interface(interface)
+    m_produceDisplay(produceDisplay)
   {
 
   }
@@ -81,11 +80,11 @@ public:
   //################################################################################################
   tp_qt_application_framework::AbstractDisplay* produceDisplay() override
   {
-    return new T(this, m_interface);
+    return m_produceDisplay(this);
   }
 
 private:
-  const tp_utils::Interface* m_interface;
+  const std::function<tp_qt_application_framework::AbstractDisplay*(tp_qt_application_framework::DisplayFactory*)> m_produceDisplay;
 };
 
 }

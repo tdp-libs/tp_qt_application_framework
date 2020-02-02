@@ -487,10 +487,10 @@ void SplitWidget::configureTriggered()
       layout->setContentsMargins(0, 0, 0, 0);
       layout->addWidget(configureWidget);
 
-      layout->addStretch();
+      //layout->addStretch();
 
       auto buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
-      buttonBox->setContentsMargins(9, 9, 9, 9);
+      buttonBox->setContentsMargins(6, 6, 6, 6);
       layout->addWidget(buttonBox);
       connect(buttonBox, SIGNAL(rejected()), dialog, SLOT(reject()));
 

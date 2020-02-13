@@ -4,6 +4,7 @@
 #include "tp_utils/JSONUtils.h"
 
 #include <QAction>
+#include <QCloseEvent>
 #include <QMessageBox>
 
 namespace tp_qt_application_framework

@@ -10,11 +10,11 @@
 #endif
 
 //##################################################################################################
-//! Classes for structuring dynamic applications
+//! Classes for structuring dynamic applications.
 /*!
-The tp_qt_application_framework namespace contains classes for building dynamic applications. The core
-of this is the \link AbstractDisplay \endlink class, this provides a standard interface for defining
-displays that can be added by the user and then saved/restored.
+The tp_qt_application_framework namespace contains classes for building dynamic applications. The
+core of this is the \link AbstractDisplay \endlink class, this provides a standard interface for
+defining displays that can be added by the user and then saved/restored.
 
 The displays are usually contained within a \link DisplayContainer Display Container \endlink that
 is used to manage multiple displays in a layout.

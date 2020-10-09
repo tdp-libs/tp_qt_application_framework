@@ -40,7 +40,7 @@ public:
 
   //################################################################################################
   //! Returns the list of workspaces in the order that they were added
-  QList<AbstractWorkspace*> workspaces()const;
+  const std::vector<AbstractWorkspace*>& workspaces()const;
 
   //################################################################################################
   //! Returns the currently visible workspace

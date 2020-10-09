@@ -157,7 +157,7 @@ void TabWidget::loadState(const nlohmann::json& j)
 
   try
   {
-    for(auto jj : TPJSON(j, "displays"))
+    for(const auto& jj : TPJSON(j, "displays"))
     {
       std::string id = TPJSONString(jj, "Factory ID");
 

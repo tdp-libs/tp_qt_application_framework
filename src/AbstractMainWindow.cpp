@@ -17,7 +17,7 @@ struct AbstractMainWindow::Private
   TP_NONCOPYABLE(Private);
   Private() = default;
 
-  QList<AbstractWorkspace*> workspaces;
+  std::vector<AbstractWorkspace*> workspaces;
   AbstractWorkspace* currentWorkspace{nullptr};
   bool questionExit{true};
 
@@ -64,7 +64,7 @@ void AbstractMainWindow::setQuestionExit(bool questionExit)
 //##################################################################################################
 void AbstractMainWindow::addWorkspace(AbstractWorkspace* workspace)
 {
-  d->workspaces.append(workspace);
+  d->workspaces.push_back(workspace);
   workspace->setMainWindow(this);
 
   if(workspace->action())
@@ -85,12 +85,12 @@ void AbstractMainWindow::addWorkspace(AbstractWorkspace* workspace)
 //##################################################################################################
 void AbstractMainWindow::setCurrentWorkspace(AbstractWorkspace* workspace)
 {
-  if(d->workspaces.contains(workspace))
+  if(tpContains(d->workspaces, workspace))
     Private::actionClicked(workspace);
 }
 
 //##################################################################################################
-QList<AbstractWorkspace*> AbstractMainWindow::workspaces()const
+const std::vector<AbstractWorkspace*>& AbstractMainWindow::workspaces()const
 {
   return d->workspaces;
 }

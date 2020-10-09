@@ -396,7 +396,7 @@ void SplitWidget::closeTriggered()
   t->setSingleShot(true);
   t->start(0);
   QPointer<SplitWidget> i=this;
-  connect(t, &QTimer::timeout, [=]()
+  connect(t, &QTimer::timeout, this, [=]()
   {
     t->deleteLater();
     if(!i)

@@ -54,7 +54,7 @@ public:
   When an AbstractDisplayFactory is called to create a display it should p
   \return - Returns the display factory that created this display.
   */
-  AbstractDisplayFactory* displayFactory()const;
+  AbstractDisplayFactory* displayFactory() const;
 
   //################################################################################################
   //! Save the state of the display
@@ -65,7 +65,7 @@ public:
   \return The current state of the display, serialized to a byte array.
   \sa loadState().
   */
-  virtual nlohmann::json saveState()const;
+  virtual nlohmann::json saveState() const;
 
   //################################################################################################
   //! Restore the state of the display
@@ -94,7 +94,7 @@ public:
   \return Returns true if the display tool bars and config buttons are visible.
   \sa setToolBarsVisible()
   */
-  bool toolBarsVisible()const;
+  bool toolBarsVisible() const;
 
   //################################################################################################
   //! Provide a widget that is used to configure the display
@@ -122,7 +122,7 @@ public:
 
   \returns true if the display is ready to be deleted.
   */
-  virtual bool readyToClose()const;
+  virtual bool readyToClose() const;
 
 private:
   AbstractDisplayFactory* m_displayFactory;

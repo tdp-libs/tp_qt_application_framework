@@ -24,7 +24,7 @@ public:
   \note This will take ownership of the workspace.
   \param workspace - The new workspace to add.
   */
-  void addWorkspace(AbstractWorkspace* workspace)override;
+  void addWorkspace(AbstractWorkspace* workspace) override;
 
   //################################################################################################
   //! Add a menu to the menu bar
@@ -33,12 +33,12 @@ public:
 
   \param menu - The nenu to add to the menu bar.
   */
-  void addMenu(QMenu* menu)override;
+  void addMenu(QMenu* menu) override;
 
 protected:
   //################################################################################################
   //! Called when the current workspace changes
-  void currentWorkspaceChanged()override;
+  void currentWorkspaceChanged() override;
 
 private:
   struct Private;

@@ -50,7 +50,7 @@ public:
 
   \returns The state of this widget as a serialized variant map.
   */
-  nlohmann::json saveState()const;
+  nlohmann::json saveState() const;
 
   //################################################################################################
   //! Load the state of this widget
@@ -77,7 +77,7 @@ public:
   \return Returns true if the tool bars are visible.
   \sa setToolBarsVisible()
   */
-  bool toolBarsVisible()const;
+  bool toolBarsVisible() const;
 
 private slots:
   //################################################################################################

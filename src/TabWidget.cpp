@@ -118,7 +118,7 @@ TabWidget::~TabWidget()
 }
 
 //##################################################################################################
-nlohmann::json TabWidget::saveState()const
+nlohmann::json TabWidget::saveState() const
 {
   nlohmann::json j;
 
@@ -189,7 +189,7 @@ void TabWidget::setToolBarsVisible(bool visible)
 }
 
 //##################################################################################################
-bool TabWidget::toolBarsVisible()const
+bool TabWidget::toolBarsVisible() const
 {
   return d->toolBarVisible;
 }

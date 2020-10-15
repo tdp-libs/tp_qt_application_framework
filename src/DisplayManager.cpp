@@ -65,7 +65,7 @@ void DisplayManager::addDisplayFactory(AbstractDisplayFactory* displayFactory)
 }
 
 //##################################################################################################
-const QList<AbstractDisplayFactory*>& DisplayManager::displayFactories()const
+const QList<AbstractDisplayFactory*>& DisplayManager::displayFactories() const
 {
   return d->displayFactories;
 }
@@ -82,7 +82,7 @@ AbstractDisplay* DisplayManager::produceDisplay(int index)
 }
 
 //##################################################################################################
-QAbstractItemModel* DisplayManager::factoriesModel()const
+QAbstractItemModel* DisplayManager::factoriesModel() const
 {
   return d->factoriesModel;
 }

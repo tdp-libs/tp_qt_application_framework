@@ -39,7 +39,7 @@ public:
 
   \return The title of the display factory.
   */
-  QString title()const;
+  QString title() const;
 
   //################################################################################################
   //! Returns the id of this display factory.
@@ -48,7 +48,7 @@ public:
 
   \return The id of this display factory.
   */
-  QString id()const;
+  QString id() const;
 
   //################################################################################################
   //! Produce an instance of the display

@@ -265,7 +265,7 @@ SplitWidget::~SplitWidget()
 }
 
 //##################################################################################################
-nlohmann::json SplitWidget::saveState()const
+nlohmann::json SplitWidget::saveState() const
 {
   nlohmann::json j;
 
@@ -380,7 +380,7 @@ void SplitWidget::setToolBarsVisible(bool visible)
 }
 
 //##################################################################################################
-bool SplitWidget::toolBarsVisible()const
+bool SplitWidget::toolBarsVisible() const
 {
   return d->toolBarVisible;
 }

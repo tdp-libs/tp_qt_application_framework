@@ -15,13 +15,13 @@ AbstractDisplayFactory::AbstractDisplayFactory(QString title, QString id):
 AbstractDisplayFactory::~AbstractDisplayFactory()=default;
 
 //##################################################################################################
-QString AbstractDisplayFactory::title()const
+QString AbstractDisplayFactory::title() const
 {
   return m_title;
 }
 
 //##################################################################################################
-QString AbstractDisplayFactory::id()const
+QString AbstractDisplayFactory::id() const
 {
   return m_id;
 }

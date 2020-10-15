@@ -40,11 +40,11 @@ public:
 
   //################################################################################################
   //! Returns the list of workspaces in the order that they were added
-  const std::vector<AbstractWorkspace*>& workspaces()const;
+  const std::vector<AbstractWorkspace*>& workspaces() const;
 
   //################################################################################################
   //! Returns the currently visible workspace
-  AbstractWorkspace* currentWorkspace()const;
+  AbstractWorkspace* currentWorkspace() const;
 
   //################################################################################################
   //! Add a menu to the menu bar
@@ -56,7 +56,7 @@ public:
   virtual void addMenu(QMenu* menu);
 
   //################################################################################################
-  virtual nlohmann::json saveState()const;
+  virtual nlohmann::json saveState() const;
 
   //################################################################################################
   virtual void loadState(const nlohmann::json& j);
@@ -67,7 +67,7 @@ protected:
   virtual void currentWorkspaceChanged();
 
   //################################################################################################
-  void closeEvent(QCloseEvent* closeEvent)override;
+  void closeEvent(QCloseEvent* closeEvent) override;
 
 private:
   struct Private;

@@ -32,7 +32,7 @@ public:
   ~TabDisplay() override;
 
   //################################################################################################
-  nlohmann::json saveState()const override;
+  nlohmann::json saveState() const override;
 
   //################################################################################################
   void loadState(const nlohmann::json& j) override;

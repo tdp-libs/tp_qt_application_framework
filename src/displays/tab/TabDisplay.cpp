@@ -23,7 +23,7 @@ TabDisplay::~TabDisplay()=default;
 
 
 //################################################################################################
-nlohmann::json TabDisplay::saveState()const
+nlohmann::json TabDisplay::saveState() const
 {
   return m_tabWidget->saveState();
 }

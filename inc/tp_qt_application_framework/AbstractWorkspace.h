@@ -7,6 +7,8 @@
 
 #include <QWidget>
 
+class QMenu;
+
 namespace tp_qt_application_framework
 {
 class AbstractMainWindow;
@@ -27,13 +29,16 @@ public:
 
   //################################################################################################
   //!Returns the main window if this has been added to a main window or nullptr
-  AbstractMainWindow* mainWindow()const;
+  AbstractMainWindow* mainWindow() const;
 
   //################################################################################################
-  virtual QAction* action()const=0;
+  virtual QAction* action() const=0;
 
   //################################################################################################
-  virtual nlohmann::json saveState()const;
+  virtual void addCustomMenus(const std::function<QMenu*(const QString&)>& addMenu) const;
+
+  //################################################################################################
+  virtual nlohmann::json saveState() const;
 
   //################################################################################################
   virtual void loadState(const nlohmann::json& j);

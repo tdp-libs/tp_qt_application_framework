@@ -43,13 +43,19 @@ const std::string& AbstractWorkspace::name() const
 }
 
 //##################################################################################################
-AbstractMainWindow* AbstractWorkspace::mainWindow()const
+AbstractMainWindow* AbstractWorkspace::mainWindow() const
 {
   return d->mainWindow;
 }
 
 //##################################################################################################
-nlohmann::json AbstractWorkspace::saveState()const
+void AbstractWorkspace::addCustomMenus(const std::function<QMenu*(const QString&)>& addMenu) const
+{
+  TP_UNUSED(addMenu);
+}
+
+//##################################################################################################
+nlohmann::json AbstractWorkspace::saveState() const
 {
   return nlohmann::json();
 }

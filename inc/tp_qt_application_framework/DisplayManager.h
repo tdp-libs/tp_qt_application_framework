@@ -51,7 +51,7 @@ public:
   /*!
   \return Return all display factories previously added with \link addDisplayFactory() \endlink.
   */
-  const QList<AbstractDisplayFactory*>& displayFactories()const;
+  const QList<AbstractDisplayFactory*>& displayFactories() const;
 
   //################################################################################################
   //! Call the display at index to produce a factory
@@ -71,7 +71,7 @@ public:
 
   \return A model fit for use in combo boxes.
   */
-  QAbstractItemModel* factoriesModel()const;
+  QAbstractItemModel* factoriesModel() const;
 
   //################################################################################################
   //! Returns the index of the factory with an id that matches factoryID.

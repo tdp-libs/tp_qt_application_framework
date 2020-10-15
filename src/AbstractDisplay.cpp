@@ -16,13 +16,13 @@ AbstractDisplay::AbstractDisplay(AbstractDisplayFactory* displayFactory, QWidget
 }
 
 //##################################################################################################
-AbstractDisplayFactory* AbstractDisplay::displayFactory()const
+AbstractDisplayFactory* AbstractDisplay::displayFactory() const
 {
   return m_displayFactory;
 }
 
 //##################################################################################################
-nlohmann::json AbstractDisplay::saveState()const
+nlohmann::json AbstractDisplay::saveState() const
 {
   return nlohmann::json();
 }
@@ -40,7 +40,7 @@ void AbstractDisplay::setToolBarsVisible(bool visible)
 }
 
 //##################################################################################################
-bool AbstractDisplay::toolBarsVisible()const
+bool AbstractDisplay::toolBarsVisible() const
 {
   return m_toolBarsVisible;
 }
@@ -52,7 +52,7 @@ QWidget* AbstractDisplay::configWidget()
 }
 
 //##################################################################################################
-bool AbstractDisplay::readyToClose()const
+bool AbstractDisplay::readyToClose() const
 {
   return true;
 }

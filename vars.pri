@@ -84,6 +84,6 @@ HEADERS += inc/tp_qt_application_framework/displays/SplitterDisplay.h
 SOURCES += src/main_windows/FileMenuMainWindow.cpp
 HEADERS += inc/tp_qt_application_framework/main_windows/FileMenuMainWindow.h
 
-#SOURCES += src/main_windows/IconBarMainWindow.cpp
+SOURCES += src/main_windows/IconBarMainWindow.cpp
 HEADERS += inc/tp_qt_application_framework/main_windows/IconBarMainWindow.h
 

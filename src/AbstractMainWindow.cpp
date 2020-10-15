@@ -90,13 +90,13 @@ void AbstractMainWindow::setCurrentWorkspace(AbstractWorkspace* workspace)
 }
 
 //##################################################################################################
-const std::vector<AbstractWorkspace*>& AbstractMainWindow::workspaces()const
+const std::vector<AbstractWorkspace*>& AbstractMainWindow::workspaces() const
 {
   return d->workspaces;
 }
 
 //##################################################################################################
-AbstractWorkspace* AbstractMainWindow::currentWorkspace()const
+AbstractWorkspace* AbstractMainWindow::currentWorkspace() const
 {
   return d->currentWorkspace;
 }
@@ -108,7 +108,7 @@ void AbstractMainWindow::addMenu(QMenu* menu)
 }
 
 //##################################################################################################
-nlohmann::json AbstractMainWindow::saveState()const
+nlohmann::json AbstractMainWindow::saveState() const
 {
   nlohmann::json j;
 

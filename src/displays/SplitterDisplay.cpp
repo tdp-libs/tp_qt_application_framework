@@ -23,7 +23,7 @@ SplitterDisplay::~SplitterDisplay()=default;
 
 
 //################################################################################################
-nlohmann::json SplitterDisplay::saveState()const
+nlohmann::json SplitterDisplay::saveState() const
 {
   return m_splitWidget->saveState();
 }

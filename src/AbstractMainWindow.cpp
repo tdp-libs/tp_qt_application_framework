@@ -115,6 +115,8 @@ nlohmann::json AbstractMainWindow::saveState() const
   for(auto workspace : d->workspaces)
     j[workspace->name()] = workspace->saveState();
 
+  j["currentWorkspace"] = tpIndexOf(d->workspaces, d->currentWorkspace);
+
   return j;
 }
 
@@ -123,6 +125,10 @@ void AbstractMainWindow::loadState(const nlohmann::json& j)
 {
   for(auto workspace : d->workspaces)
     workspace->loadState(TPJSON(j, workspace->name()));
+
+  size_t currentWorkspace = TPJSONSizeT(j, "currentWorkspace");
+  if(currentWorkspace<d->workspaces.size())
+    setCurrentWorkspace(d->workspaces.at(currentWorkspace));
 }
 
 //##################################################################################################

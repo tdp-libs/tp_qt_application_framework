@@ -88,7 +88,10 @@ struct TabWidget::Private
     addTabLayout->addStretch();
 
     int index = tabWidget->addTab(addTab, "+");
-    tabWidget->tabBar()->tabButton(index, QTabBar::RightSide)->resize(0, 0);
+    if(auto b = tabWidget->tabBar()->tabButton(index, QTabBar::RightSide); b)
+      b->resize(0, 0);
+    if(auto b = tabWidget->tabBar()->tabButton(index, QTabBar::LeftSide); b)
+      b->resize(0, 0);
   }
 };
 

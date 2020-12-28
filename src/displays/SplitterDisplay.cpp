@@ -22,19 +22,19 @@ SplitterDisplay::SplitterDisplay(DisplayManager* displayManager, AbstractDisplay
 SplitterDisplay::~SplitterDisplay()=default;
 
 
-//################################################################################################
+//##################################################################################################
 nlohmann::json SplitterDisplay::saveState() const
 {
   return m_splitWidget->saveState();
 }
 
-//################################################################################################
+//##################################################################################################
 void SplitterDisplay::loadState(const nlohmann::json& j)
 {
   m_splitWidget->loadState(j);
 }
 
-//################################################################################################
+//##################################################################################################
 void SplitterDisplay::setToolBarsVisible(bool visible)
 {
   AbstractDisplay::setToolBarsVisible(visible);

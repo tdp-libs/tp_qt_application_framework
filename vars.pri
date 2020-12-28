@@ -79,6 +79,9 @@ HEADERS += inc/tp_qt_application_framework/displays/tab/TabDisplayFactory.h
 SOURCES += src/displays/SplitterDisplay.cpp
 HEADERS += inc/tp_qt_application_framework/displays/SplitterDisplay.h
 
+SOURCES += src/displays/DebugDisplay.cpp
+HEADERS += inc/tp_qt_application_framework/displays/DebugDisplay.h
+
 
 #-- Main windows -----------------------------------------------------------------------------------
 SOURCES += src/main_windows/FileMenuMainWindow.cpp

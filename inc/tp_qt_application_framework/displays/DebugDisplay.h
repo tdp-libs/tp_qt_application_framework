@@ -12,7 +12,7 @@ namespace tp_qt_application_framework
 {
 
 //##################################################################################################
-//! Displays tpDebug() and tpWarning() in a display.
+//! Displays tpDebug and tpWarning in a display.
 /*!
 \ingroup Displays
 */

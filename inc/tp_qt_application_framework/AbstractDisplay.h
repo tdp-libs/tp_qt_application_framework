@@ -35,6 +35,7 @@ user, and saved/restored.
 */
 class TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractDisplay: public QWidget
 {
+  Q_OBJECT
 public:
   //################################################################################################
   //! Construct the display

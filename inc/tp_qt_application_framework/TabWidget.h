@@ -31,7 +31,6 @@ public:
   */
   TabWidget(DisplayManager* displayManager, QWidget* parent=nullptr);
 
-public:
   //################################################################################################
   //! Destructor
   /*!
@@ -56,6 +55,9 @@ public:
   child displays.
   */
   void loadState(const nlohmann::json& j);
+
+  //################################################################################################
+  QWidget* configWidget();
 
 public slots:
   //################################################################################################

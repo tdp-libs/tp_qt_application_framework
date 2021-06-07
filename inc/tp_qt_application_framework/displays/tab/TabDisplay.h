@@ -40,6 +40,9 @@ public:
   //################################################################################################
   void setToolBarsVisible(bool visible) override;
 
+  //################################################################################################
+  QWidget* configWidget() override;
+
 private:
   TabWidget* m_tabWidget;
 };

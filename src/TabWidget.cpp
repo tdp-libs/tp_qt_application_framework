@@ -185,6 +185,13 @@ void TabWidget::loadState(const nlohmann::json& j)
 }
 
 //##################################################################################################
+QWidget* TabWidget::configWidget()
+{
+  auto currentDisplay = dynamic_cast<AbstractDisplay*>(d->tabWidget->currentWidget());
+  return (!currentDisplay)?nullptr:currentDisplay->configWidget();
+}
+
+//##################################################################################################
 void TabWidget::setToolBarsVisible(bool visible)
 {
   d->toolBarVisible = visible;

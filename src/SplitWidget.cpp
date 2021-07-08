@@ -71,10 +71,10 @@ struct SplitWidget::Private
   {
     TP_REF("tp_qt_application_framework::SplitWidget");
 
-    connect(closeAction, SIGNAL(triggered()), q, SLOT(closeTriggered()));
-    connect(splitHorizontalAction, SIGNAL(triggered()), q, SLOT(splitHorizontalyTriggered()));
-    connect(splitVerticalAction, SIGNAL(triggered()), q, SLOT(splitVerticalyTriggered()));
-    connect(configureAction, SIGNAL(triggered()), q, SLOT(configureTriggered()));
+    connect(closeAction, &QAction::triggered, q, &SplitWidget::closeTriggered);
+    connect(splitHorizontalAction, &QAction::triggered, q, &SplitWidget::splitHorizontalyTriggered);
+    connect(splitVerticalAction, &QAction::triggered, q, &SplitWidget::splitVerticalyTriggered);
+    connect(configureAction, &QAction::triggered, q, &SplitWidget::configureTriggered);
   }
 
   //################################################################################################
@@ -96,7 +96,7 @@ struct SplitWidget::Private
 
     contentCombo = new QComboBox;
     contentCombo->setModel(displayManager->factoriesModel());
-    connect(contentCombo, SIGNAL(activated(int)), q, SLOT(factoryComboActivated(int)));
+    connect(contentCombo, QOverload<int>::of(&QComboBox::activated), q, &SplitWidget::factoryComboActivated);
     toolBar->addWidget(contentCombo);
     contentCombo->setCurrentIndex(displayIndex);
 
@@ -492,7 +492,7 @@ void SplitWidget::configureTriggered()
       auto buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
       buttonBox->setContentsMargins(6, 6, 6, 6);
       layout->addWidget(buttonBox);
-      connect(buttonBox, SIGNAL(rejected()), dialog, SLOT(reject()));
+      connect(buttonBox, &QDialogButtonBox::rejected, dialog.data(), &QDialog::reject);
 
       dialog->exec();
 

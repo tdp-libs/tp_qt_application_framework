@@ -22,6 +22,7 @@ allow displays to be dynamicaly added to the user interface, and be saved/restor
 */
 class TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractDisplayFactory
 {
+  TP_NONCOPYABLE(AbstractDisplayFactory);
 public:
   //################################################################################################
   //! Constructor

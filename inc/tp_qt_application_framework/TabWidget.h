@@ -59,7 +59,7 @@ public:
   //################################################################################################
   QWidget* configWidget();
 
-public slots:
+public Q_SLOTS:
   //################################################################################################
   //! Set the visibility for splitter headers
   /*!
@@ -79,8 +79,7 @@ public:
   */
   bool toolBarsVisible() const;
 
-private slots:
-
+private Q_SLOTS:
   //################################################################################################
   void configureTriggered();
 

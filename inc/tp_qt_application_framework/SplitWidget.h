@@ -79,7 +79,7 @@ public:
   */
   bool toolBarsVisible() const;
 
-private slots:
+private Q_SLOTS:
   //################################################################################################
   void closeTriggered();
 

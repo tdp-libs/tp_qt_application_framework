@@ -386,6 +386,12 @@ bool SplitWidget::toolBarsVisible() const
 }
 
 //##################################################################################################
+bool SplitWidget::empty() const
+{
+  return !(d->display || d->a || d->b);
+}
+
+//##################################################################################################
 void SplitWidget::closeTriggered()
 {
   //Here we use a 0 timer to perform the actual removal once control has returned to the event loop.

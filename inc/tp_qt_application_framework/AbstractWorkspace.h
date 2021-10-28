@@ -35,7 +35,7 @@ public:
   virtual QAction* action() const=0;
 
   //################################################################################################
-  virtual void addCustomMenus(const std::function<QMenu*(const QString&)>& addMenu) const;
+  virtual void addCustomMenus(const std::function<QMenu*(const QString&)>& addMenu);
 
   //################################################################################################
   virtual nlohmann::json saveState() const;

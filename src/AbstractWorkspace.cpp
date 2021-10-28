@@ -49,7 +49,7 @@ AbstractMainWindow* AbstractWorkspace::mainWindow() const
 }
 
 //##################################################################################################
-void AbstractWorkspace::addCustomMenus(const std::function<QMenu*(const QString&)>& addMenu) const
+void AbstractWorkspace::addCustomMenus(const std::function<QMenu*(const QString&)>& addMenu)
 {
   TP_UNUSED(addMenu);
 }

@@ -1,6 +1,8 @@
 #include "tp_qt_application_framework/main_windows/IconBarMainWindow.h"
 #include "tp_qt_application_framework/AbstractWorkspace.h"
 
+#include "tp_utils/DebugUtils.h"
+
 #include <QMenu>
 #include <QMenuBar>
 #include <QVBoxLayout>
@@ -9,6 +11,12 @@
 
 namespace tp_qt_application_framework
 {
+
+struct MenuItems_lt
+{
+  QPointer<QMenu> menu;
+  QPointer<QAction> action;
+};
 
 //##################################################################################################
 struct IconBarMainWindow::Private
@@ -24,7 +32,7 @@ struct IconBarMainWindow::Private
   QPointer<QHBoxLayout> hLayout;
   QPointer<QVBoxLayout> buttonLayout;
 
-  std::vector<QMenu*> customMenus;
+  std::vector<MenuItems_lt> customMenus;
 
   //################################################################################################
   Private(IconBarMainWindow* q_):
@@ -44,7 +52,13 @@ struct IconBarMainWindow::Private
   //################################################################################################
   void updateWorkspace()
   {
-    tpDeleteAll(customMenus);
+    for(const auto& customMenu : customMenus)
+    {
+      menuBar->removeAction(customMenu.action);
+      delete customMenu.action;
+      delete customMenu.menu;
+    }
+
     customMenus.clear();
 
     for(AbstractWorkspace* workspace : q->workspaces())
@@ -53,9 +67,13 @@ struct IconBarMainWindow::Private
       if(workspace == q->currentWorkspace())
       {
         hLayout->addWidget(workspace);
-        workspace->addCustomMenus([&](const QString& title)
+        workspace->addCustomMenus([this](const QString& title)
         {
-          return customMenus.emplace_back(menuBar->addMenu(title));
+          MenuItems_lt& item = customMenus.emplace_back();
+          item.menu = new QMenu(title);
+          menuBar->addAction(item.menu->menuAction());
+          item.action = item.menu->menuAction();
+          return item.menu;
         });
       }
     }

@@ -44,13 +44,14 @@ struct IconBarMainWindow::Private
   //################################################################################################
   ~Private()
   {
+    deleteCustomMenus();
     delete menuBar;
     delete viewMenu;
     delete menuLayout;
   }
 
   //################################################################################################
-  void updateWorkspace()
+  void deleteCustomMenus()
   {
     for(const auto& customMenu : customMenus)
     {
@@ -60,6 +61,12 @@ struct IconBarMainWindow::Private
     }
 
     customMenus.clear();
+  }
+
+  //################################################################################################
+  void updateWorkspace()
+  {
+    deleteCustomMenus();
 
     for(AbstractWorkspace* workspace : q->workspaces())
     {

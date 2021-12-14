@@ -31,6 +31,7 @@ struct IconBarMainWindow::Private
   QPointer<QVBoxLayout> menuLayout;
   QPointer<QHBoxLayout> hLayout;
   QPointer<QVBoxLayout> buttonLayout;
+  QPointer<QVBoxLayout> leftLayout;
 
   std::vector<MenuItems_lt> customMenus;
 
@@ -104,14 +105,14 @@ IconBarMainWindow::IconBarMainWindow(QWidget* parent):
   d->menuLayout->addLayout(d->hLayout);
 
   auto buttonWidget = new QWidget();
-  auto ll = new QVBoxLayout(buttonWidget);
-  ll->setContentsMargins(0,0,0,0);
-  ll->setSpacing(0);
+  d->leftLayout = new QVBoxLayout(buttonWidget);
+  d->leftLayout->setContentsMargins(0,0,0,0);
+  d->leftLayout->setSpacing(0);
   d->buttonLayout = new QVBoxLayout();
-  ll->addLayout(d->buttonLayout);
+  d->leftLayout->addLayout(d->buttonLayout);
   d->buttonLayout->setContentsMargins(2,2,2,2);
   d->buttonLayout->setSpacing(0);
-  ll->addStretch();
+  d->leftLayout->addStretch();
   buttonWidget->setFixedWidth(74);
   buttonWidget->setStyleSheet("background-color:#404142;");
   d->hLayout->addWidget(buttonWidget);
@@ -151,6 +152,12 @@ void IconBarMainWindow::addWorkspace(AbstractWorkspace* workspace)
 void IconBarMainWindow::addMenu(QMenu* menu)
 {
   d->menuBar->addMenu(menu);
+}
+
+//##################################################################################################
+void IconBarMainWindow::addWidget(QWidget* widget)
+{
+  d->leftLayout->addWidget(widget);
 }
 
 //##################################################################################################

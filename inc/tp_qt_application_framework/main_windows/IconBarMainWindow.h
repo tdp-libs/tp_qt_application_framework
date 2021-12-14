@@ -36,6 +36,10 @@ public:
   void addMenu(QMenu* menu) override;
 
   //################################################################################################
+  //! Add a widget to the bottom left of the icon bar.
+  void addWidget(QWidget* widget);
+
+  //################################################################################################
   void loadState(const nlohmann::json& j) override;
 
 protected:

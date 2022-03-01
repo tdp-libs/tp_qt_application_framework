@@ -70,7 +70,7 @@ void AbstractMainWindow::addWorkspace(AbstractWorkspace* workspace)
   if(workspace->action())
   {
     workspace->action()->setCheckable(true);
-    connect(workspace->action(), &QAction::triggered, [workspace](bool){Private::actionClicked(workspace);});
+    connect(workspace->action(), &QAction::triggered, workspace, [workspace](bool){Private::actionClicked(workspace);});
   }
 
   if(d->workspaces.size()==1)

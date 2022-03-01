@@ -75,7 +75,7 @@ struct TabWidget::Private
 
     auto addButton = new QPushButton("Add tab");
     addTabLayout->addWidget(addButton);
-    connect(addButton, &QPushButton::clicked, [&]
+    connect(addButton, &QPushButton::clicked, contentCombo, [&]
     {
       auto index = contentCombo->currentIndex();
       auto display = displayManager->produceDisplay(index);
@@ -106,7 +106,7 @@ TabWidget::TabWidget(DisplayManager *displayManager, QWidget* parent):
   d->tabWidget = new QTabWidget();
   d->tabWidget->setTabsClosable(true);
   l->addWidget(d->tabWidget);
-  connect(d->tabWidget, &QTabWidget::tabCloseRequested, [&](int index)
+  connect(d->tabWidget, &QTabWidget::tabCloseRequested, this, [&](int index)
   {
     d->tabWidget->removeTab(index);
   });

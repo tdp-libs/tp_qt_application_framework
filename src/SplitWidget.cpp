@@ -487,6 +487,7 @@ void SplitWidget::configureTriggered()
     if(configureWidget)
     {
       QPointer<QDialog> dialog = new QDialog(this);
+      dialog->resize(configureWidget->size());
       dialog->setWindowTitle("Configure Display");
       auto layout = new QVBoxLayout(dialog);
 

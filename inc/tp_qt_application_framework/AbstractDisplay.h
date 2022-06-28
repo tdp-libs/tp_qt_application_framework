@@ -30,8 +30,8 @@ re-arrange the user interface.
 This class proides a standard interface that can be sub-classes to create displays that can be added
 to \link DisplayContainers Display Containers \endlink and managed by the DisplayManager.
 
-It is normal for a display to be paired with an \link AbstractDisplayFactory \endlink so that it can be added by a
-user, and saved/restored.
+It is normal for a display to be paired with an \link AbstractDisplayFactory \endlink so that it can
+be added by a user, and saved/restored.
 */
 class TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractDisplay: public QWidget
 {

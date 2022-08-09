@@ -1,6 +1,8 @@
 #include "tp_qt_application_framework/AbstractWorkspace.h"
 #include "tp_qt_application_framework/AbstractMainWindow.h"
 
+#include "tp_utils/RefCount.h"
+
 #include <QWidget>
 
 namespace tp_qt_application_framework

@@ -2,6 +2,8 @@
 #include "tp_qt_application_framework/AbstractDisplayFactory.h"
 #include "tp_qt_application_framework/AbstractDisplay.h"
 
+#include "tp_utils/RefCount.h"
+
 #include <QAbstractItemModel>
 #include <QList>
 #include <QStringListModel>

@@ -2,6 +2,7 @@
 #include "tp_qt_application_framework/AbstractWorkspace.h"
 
 #include "tp_utils/JSONUtils.h"
+#include "tp_utils/RefCount.h"
 
 #include <QAction>
 #include <QCloseEvent>

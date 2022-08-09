@@ -5,8 +5,7 @@
 #include "tp_qt_utils/TimerCallback.h"
 #include "tp_qt_utils/EventLatency.h"
 
-#include "tp_utils/DebugUtils.h"
-#include "tp_utils/JSONUtils.h"
+#include "tp_utils/RefCount.h"
 
 #include <QTextEdit>
 #include <QBoxLayout>

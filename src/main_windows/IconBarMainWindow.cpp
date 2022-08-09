@@ -1,7 +1,7 @@
 #include "tp_qt_application_framework/main_windows/IconBarMainWindow.h"
 #include "tp_qt_application_framework/AbstractWorkspace.h"
 
-#include "tp_utils/DebugUtils.h"
+#include "tp_utils/RefCount.h"
 
 #include <QMenu>
 #include <QMenuBar>

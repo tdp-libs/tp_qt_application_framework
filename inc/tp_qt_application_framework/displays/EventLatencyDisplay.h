@@ -20,6 +20,9 @@ public:
   //################################################################################################
   ~EventLatencyDisplay() override;
 
+  //################################################################################################
+  static tp_qt_application_framework::AbstractDisplayFactory* factory();
+
 private:
   EventLatencyWidget* m_EventLatencyWidget;
 };

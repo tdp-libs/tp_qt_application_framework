@@ -1,5 +1,5 @@
-#include "tp_qt_application_framework/displays/event_latency/EventLatencyDisplay.h"
-#include "tp_qt_application_framework/displays/event_latency/EventLatencyDisplayFactory.h"
+#include "tp_qt_application_framework/displays/EventLatencyDisplay.h"
+#include "tp_qt_application_framework/AbstractDisplayFactory.h"
 #include "tp_qt_application_framework/EventLatencyWidget.h"
 
 #include <QBoxLayout>
@@ -20,5 +20,14 @@ EventLatencyDisplay::EventLatencyDisplay(AbstractDisplayFactory* displayFactory,
 
 //##################################################################################################
 EventLatencyDisplay::~EventLatencyDisplay()=default;
+
+//##################################################################################################
+tp_qt_application_framework::AbstractDisplayFactory* EventLatencyDisplay::factory()
+{
+  return new tp_qt_application_framework::DisplayFactory("Event latency", "Event latency", [=](auto factory)
+  {
+    return new EventLatencyDisplay(factory);
+  });
+}
 
 }

@@ -32,6 +32,9 @@ public:
   ~TabDisplay() override;
 
   //################################################################################################
+  static tp_qt_application_framework::AbstractDisplayFactory* factory(DisplayManager* displayManager);
+
+  //################################################################################################
   nlohmann::json saveState() const override;
 
   //################################################################################################

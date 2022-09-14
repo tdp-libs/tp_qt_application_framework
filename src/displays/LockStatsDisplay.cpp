@@ -1,5 +1,5 @@
-#include "tp_qt_application_framework/displays/lock_stats/LockStatsDisplay.h"
-#include "tp_qt_application_framework/displays/lock_stats/LockStatsDisplayFactory.h"
+#include "tp_qt_application_framework/displays/LockStatsDisplay.h"
+#include "tp_qt_application_framework/AbstractDisplayFactory.h"
 #include "tp_qt_application_framework/LockStatsWidget.h"
 
 #include <QBoxLayout>
@@ -20,5 +20,14 @@ LockStatsDisplay::LockStatsDisplay(AbstractDisplayFactory* displayFactory, QWidg
 
 //##################################################################################################
 LockStatsDisplay::~LockStatsDisplay()=default;
+
+//##################################################################################################
+tp_qt_application_framework::AbstractDisplayFactory* LockStatsDisplay::factory()
+{
+  return new tp_qt_application_framework::DisplayFactory("Lock stats", "Lock stats", [=](auto factory)
+  {
+    return new LockStatsDisplay(factory);
+  });
+}
 
 }

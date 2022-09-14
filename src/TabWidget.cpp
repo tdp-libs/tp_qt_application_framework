@@ -4,10 +4,7 @@
 #include "tp_qt_application_framework/AbstractDisplayFactory.h"
 
 #include "tp_utils/RefCount.h"
-#include "tp_utils/DebugUtils.h"
 #include "tp_utils/JSONUtils.h"
-
-#include "base64.h"
 
 #include <QTabWidget>
 #include <QBoxLayout>

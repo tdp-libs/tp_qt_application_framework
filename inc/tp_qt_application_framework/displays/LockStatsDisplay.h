@@ -20,6 +20,9 @@ public:
   //################################################################################################
   ~LockStatsDisplay() override;
 
+  //################################################################################################
+  static tp_qt_application_framework::AbstractDisplayFactory* factory();
+
 private:
   LockStatsWidget* m_lockStatsWidget;
 };

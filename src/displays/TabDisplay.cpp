@@ -1,5 +1,5 @@
-#include "tp_qt_application_framework/displays/tab/TabDisplay.h"
-#include "tp_qt_application_framework/displays/tab/TabDisplayFactory.h"
+#include "tp_qt_application_framework/displays/TabDisplay.h"
+#include "tp_qt_application_framework/AbstractDisplayFactory.h"
 #include "tp_qt_application_framework/TabWidget.h"
 
 #include <QBoxLayout>
@@ -21,6 +21,14 @@ TabDisplay::TabDisplay(DisplayManager* displayManager, AbstractDisplayFactory* d
 //##################################################################################################
 TabDisplay::~TabDisplay()=default;
 
+//##################################################################################################
+tp_qt_application_framework::AbstractDisplayFactory* TabDisplay::factory(DisplayManager* displayManager)
+{
+  return new tp_qt_application_framework::DisplayFactory("Tab", "Tab", [=](auto factory)
+  {
+    return new TabDisplay(displayManager, factory);
+  });
+}
 
 //##################################################################################################
 nlohmann::json TabDisplay::saveState() const

@@ -41,40 +41,20 @@ SOURCES += src/AbstractMainWindow.cpp
 HEADERS += inc/tp_qt_application_framework/AbstractMainWindow.h
 
 #--- Displays --------------------------------------------------------------------------------------
-SOURCES += src/displays/ref_count/RefCountDisplay.cpp
-HEADERS += inc/tp_qt_application_framework/displays/ref_count/RefCountDisplay.h
+SOURCES += src/displays/RefCountDisplay.cpp
+HEADERS += inc/tp_qt_application_framework/displays/RefCountDisplay.h
 
-SOURCES += src/displays/ref_count/RefCountDisplayFactory.cpp
-HEADERS += inc/tp_qt_application_framework/displays/ref_count/RefCountDisplayFactory.h
+SOURCES += src/displays/LockStatsDisplay.cpp
+HEADERS += inc/tp_qt_application_framework/displays/LockStatsDisplay.h
 
+SOURCES += src/displays/FunctionTimeDisplay.cpp
+HEADERS += inc/tp_qt_application_framework/displays/FunctionTimeDisplay.h
 
-SOURCES += src/displays/lock_stats/LockStatsDisplay.cpp
-HEADERS += inc/tp_qt_application_framework/displays/lock_stats/LockStatsDisplay.h
+SOURCES += src/displays/EventLatencyDisplay.cpp
+HEADERS += inc/tp_qt_application_framework/displays/EventLatencyDisplay.h
 
-SOURCES += src/displays/lock_stats/LockStatsDisplayFactory.cpp
-HEADERS += inc/tp_qt_application_framework/displays/lock_stats/LockStatsDisplayFactory.h
-
-
-SOURCES += src/displays/function_time/FunctionTimeDisplay.cpp
-HEADERS += inc/tp_qt_application_framework/displays/function_time/FunctionTimeDisplay.h
-
-SOURCES += src/displays/function_time/FunctionTimeDisplayFactory.cpp
-HEADERS += inc/tp_qt_application_framework/displays/function_time/FunctionTimeDisplayFactory.h
-
-
-SOURCES += src/displays/event_latency/EventLatencyDisplay.cpp
-HEADERS += inc/tp_qt_application_framework/displays/event_latency/EventLatencyDisplay.h
-
-SOURCES += src/displays/event_latency/EventLatencyDisplayFactory.cpp
-HEADERS += inc/tp_qt_application_framework/displays/event_latency/EventLatencyDisplayFactory.h
-
-
-SOURCES += src/displays/tab/TabDisplay.cpp
-HEADERS += inc/tp_qt_application_framework/displays/tab/TabDisplay.h
-
-SOURCES += src/displays/tab/TabDisplayFactory.cpp
-HEADERS += inc/tp_qt_application_framework/displays/tab/TabDisplayFactory.h
-
+SOURCES += src/displays/TabDisplay.cpp
+HEADERS += inc/tp_qt_application_framework/displays/TabDisplay.h
 
 SOURCES += src/displays/SplitterDisplay.cpp
 HEADERS += inc/tp_qt_application_framework/displays/SplitterDisplay.h

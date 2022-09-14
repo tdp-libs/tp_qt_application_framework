@@ -1,5 +1,5 @@
 #include "tp_qt_application_framework/displays/DebugDisplay.h"
-#include "tp_qt_application_framework/displays/tab/TabDisplayFactory.h"
+#include "tp_qt_application_framework/AbstractDisplayFactory.h"
 #include "tp_qt_widgets/DebugWidget.h"
 
 #include <QBoxLayout>

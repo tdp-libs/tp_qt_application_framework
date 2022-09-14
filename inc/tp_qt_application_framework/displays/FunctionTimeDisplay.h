@@ -20,6 +20,9 @@ public:
   //################################################################################################
   ~FunctionTimeDisplay() override;
 
+  //################################################################################################
+  static tp_qt_application_framework::AbstractDisplayFactory* factory();
+
 private:
   FunctionTimeWidget* m_lockStatsWidget;
 };

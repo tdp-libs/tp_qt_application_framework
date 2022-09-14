@@ -4,7 +4,6 @@
 
 namespace tp_qt_application_framework
 {
-//int count =0;
 
 //##################################################################################################
 AbstractDisplay::AbstractDisplay(AbstractDisplayFactory* displayFactory, QWidget* parent):

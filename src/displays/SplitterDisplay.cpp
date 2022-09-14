@@ -1,5 +1,5 @@
 #include "tp_qt_application_framework/displays/SplitterDisplay.h"
-#include "tp_qt_application_framework/displays/tab/TabDisplayFactory.h"
+#include "tp_qt_application_framework/AbstractDisplayFactory.h"
 #include "tp_qt_application_framework/SplitWidget.h"
 
 #include <QBoxLayout>

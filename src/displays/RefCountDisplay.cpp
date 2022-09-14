@@ -1,4 +1,5 @@
-#include "tp_qt_application_framework/displays/ref_count/RefCountDisplay.h"
+#include "tp_qt_application_framework/displays/RefCountDisplay.h"
+#include "tp_qt_application_framework/AbstractDisplayFactory.h"
 
 #include "tp_qt_widgets/RefCountWidget.h"
 
@@ -19,5 +20,14 @@ RefCountDisplay::RefCountDisplay(tp_qt_application_framework::AbstractDisplayFac
 
 //##################################################################################################
 RefCountDisplay::~RefCountDisplay()=default;
+
+//##################################################################################################
+tp_qt_application_framework::AbstractDisplayFactory* RefCountDisplay::factory()
+{
+  return new tp_qt_application_framework::DisplayFactory("Instance count", "Instance count", [=](auto factory)
+  {
+    return new RefCountDisplay(factory);
+  });
+}
 
 }

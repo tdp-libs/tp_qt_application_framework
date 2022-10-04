@@ -6,6 +6,10 @@
 
 #include "tp_utils/RefCount.h"
 
+#ifdef TP_ENABLE_FUNCTION_TIME
+#include "tp_utils/TimeUtils.h"
+#endif
+
 #include <QTextEdit>
 #include <QBoxLayout>
 #include <QScrollBar>

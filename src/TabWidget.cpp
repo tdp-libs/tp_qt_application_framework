@@ -124,17 +124,19 @@ nlohmann::json TabWidget::saveState() const
 
   j["Toolbars Visible"] = d->toolBarVisible;
 
-  j["displays"] = nlohmann::json::array();
+  auto& displaysJ = j["displays"];
+  displaysJ = nlohmann::json::array();
+  displaysJ.get_ptr<nlohmann::json::array_t*>()->reserve(size_t(d->tabWidget->count()));
   for(int i=0; i<d->tabWidget->count(); i++)
   {
     auto display = dynamic_cast<AbstractDisplay*>(d->tabWidget->widget(i));
     if(!display)
       continue;
 
-    nlohmann::json jj;
+    displaysJ.emplace_back();
+    nlohmann::json& jj = displaysJ.back();
     jj["Factory ID"]    = display->displayFactory()->id().toStdString();
     jj["Display State"] = display->saveState();
-    j["displays"].push_back(jj);
   }
 
   j["Selected Index"] = d->tabWidget->currentIndex();

@@ -16,6 +16,9 @@ HEADERS += inc/tp_qt_application_framework/SplitWidget.h
 SOURCES += src/TabWidget.cpp
 HEADERS += inc/tp_qt_application_framework/TabWidget.h
 
+SOURCES += src/CollapsibleStack.cpp
+HEADERS += inc/tp_qt_application_framework/CollapsibleStack.h
+
 SOURCES += src/LockStatsWidget.cpp
 HEADERS += inc/tp_qt_application_framework/LockStatsWidget.h
 
@@ -55,6 +58,9 @@ HEADERS += inc/tp_qt_application_framework/displays/EventLatencyDisplay.h
 
 SOURCES += src/displays/TabDisplay.cpp
 HEADERS += inc/tp_qt_application_framework/displays/TabDisplay.h
+
+SOURCES += src/displays/CollapsibleStackDisplay.cpp
+HEADERS += inc/tp_qt_application_framework/displays/CollapsibleStackDisplay.h
 
 SOURCES += src/displays/SplitterDisplay.cpp
 HEADERS += inc/tp_qt_application_framework/displays/SplitterDisplay.h

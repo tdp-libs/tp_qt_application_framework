@@ -1,7 +1,7 @@
 #ifndef tp_qt_application_framework_Globals_h
 #define tp_qt_application_framework_Globals_h
 
-#include "tp_qt_utils/Globals.h"
+#include "tp_qt_utils/Globals.h" // IWYU pragma: keep
 
 #if defined(TP_QT_APPLICATION_FRAMEWORK_LIBRARY)
 #  define TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT TP_EXPORT
@@ -21,7 +21,17 @@ is used to manage multiple displays in a layout.
 */
 namespace tp_qt_application_framework
 {
+class AbstractDisplay;
+
+//##################################################################################################
 int staticInit();
+
+//##################################################################################################
+QString toolBarStyle();
+
+//##################################################################################################
+void execConfigDialog(AbstractDisplay* display, QWidget* parent);
+
 }
 
 #endif

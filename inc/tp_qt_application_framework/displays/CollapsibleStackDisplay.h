@@ -1,19 +1,19 @@
-#ifndef tp_qt_application_framework_TabDisplay_h
-#define tp_qt_application_framework_TabDisplay_h
+#ifndef tp_qt_application_framework_CollapsibleStackDisplay_h
+#define tp_qt_application_framework_CollapsibleStackDisplay_h
 
 #include "tp_qt_application_framework/AbstractDisplay.h"
 
 namespace tp_qt_application_framework
 {
-class TabWidget;
+class CollapsibleStack;
 class DisplayManager;
 
 //##################################################################################################
-//! Arrange other displays in tabs
+//! Arrange other displays in collapsible panels.
 /*!
 \ingroup Displays
 */
-class TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT TabDisplay: public tp_qt_application_framework::AbstractDisplay
+class TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT CollapsibleStackDisplay: public tp_qt_application_framework::AbstractDisplay
 {
   Q_OBJECT
 public:
@@ -21,12 +21,12 @@ public:
   //################################################################################################
   //! Constructor
   /*!
-  This is usually called by the TabDisplayFactory.
+  This is usually called by the CollapsibleStackDisplayFactory.
   */
-  TabDisplay(DisplayManager* displayManager, AbstractDisplayFactory* displayFactory, QWidget* parent=nullptr);
+  CollapsibleStackDisplay(DisplayManager* displayManager, AbstractDisplayFactory* displayFactory, QWidget* parent=nullptr);
 
   //################################################################################################
-  ~TabDisplay() override;
+  ~CollapsibleStackDisplay() override;
 
   //################################################################################################
   static tp_qt_application_framework::AbstractDisplayFactory* factory(DisplayManager* displayManager);
@@ -44,7 +44,7 @@ public:
   QWidget* configWidget() override;
 
 private:
-  TabWidget* m_tabWidget;
+  CollapsibleStack* m_collapsibleStack;
 };
 
 }

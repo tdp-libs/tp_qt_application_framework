@@ -19,6 +19,9 @@
 
 namespace tp_qt_application_framework
 {
+#ifdef TP_LINUX
+#warning make this callback common.
+#endif
 
 //##################################################################################################
 template<typename T>
@@ -71,12 +74,6 @@ struct CollapsibleStack::Private
   Private(CollapsibleStack* q_, DisplayManager* displayManager_):
     q(q_),
     displayManager(displayManager_)
-  {
-
-  }
-
-  //################################################################################################
-  ~Private()
   {
 
   }

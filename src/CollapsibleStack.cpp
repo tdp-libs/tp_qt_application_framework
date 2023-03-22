@@ -14,38 +14,13 @@
 #include <QToolButton>
 #include <QPointer>
 #include <QComboBox>
-
-#include <QDebug>
+#include <QLabel>
+#include <QListWidget>
+#include <QDropEvent>
+#include <QPointer>
 
 namespace tp_qt_application_framework
 {
-#ifdef TP_LINUX
-#warning make this callback common.
-#endif
-
-//##################################################################################################
-template<typename T>
-class QObjectCallback;
-
-//##################################################################################################
-template<typename R, typename... Args>
-class QObjectCallback<R(Args...)> : public QObject, public tp_utils::Callback<R(Args...)>
-{
-  public:
-  //################################################################################################
-  QObjectCallback() = delete;
-
-  //################################################################################################
-  template<typename F>
-  QObjectCallback(QObject* parent,
-                  tp_utils::CallbackCollection<R(Args...)>& collection,
-                  const F& callback):
-    QObject(parent),
-    tp_utils::Callback<R(Args...)>(callback)
-  {
-    tp_utils::Callback<R(Args...)>::connect(collection);
-  }
-};
 
 //##################################################################################################
 struct CollapsibleStack::Private
@@ -60,6 +35,9 @@ struct CollapsibleStack::Private
   DisplayManager* displayManager;
 
   QComboBox* contentCombo{nullptr};
+
+  QPointer<QWidget> configDialog;
+  QListWidget* pannelListWidget{nullptr};
 
   bool toolBarVisible{true};
 
@@ -76,6 +54,12 @@ struct CollapsibleStack::Private
     displayManager(displayManager_)
   {
 
+  }
+
+  //################################################################################################
+  ~Private()
+  {
+    delete configDialog;
   }
 
   //################################################################################################
@@ -98,46 +82,53 @@ struct CollapsibleStack::Private
       if(addPanelLayout)
         index--;
 
-      auto l = new QVBoxLayout();
-      l->setContentsMargins(0, 0, 0, 0);
-      l->addWidget(display);
-
-      collapsibleStack->insertPage(index, display->displayFactory()->title(), l, true);
-
-      {
-        auto button = new QToolButton();
-        button->setStyleSheet(toolBarStyle());
-        button->setIcon(configureIcon);
-        collapsibleStack->addWidgetToButton(index, button);
-        connect(button, &QToolButton::clicked, q, [=]
-        {
-          execConfigDialog(display, q);
-        });
-
-        new QObjectCallback<void(bool)>(button, setButtonVisibility, [=](bool visible)
-        {
-          button->setVisible(visible);
-        });
-      }
-
-      {
-        auto button = new QToolButton();
-        button->setStyleSheet(toolBarStyle());
-        button->setIcon(closeIcon);
-        collapsibleStack->addWidgetToButton(index, button);
-        connect(button, &QToolButton::clicked, q, [=]
-        {
-          collapsibleStack->removePage(displayIndex(display));
-        });
-
-        new QObjectCallback<void(bool)>(button, setButtonVisibility, [=](bool visible)
-        {
-          button->setVisible(visible);
-        });
-      }
+      insertDisplay(display, index);
     }
 
     setButtonVisibility(toolBarVisible);
+  }
+
+
+  //################################################################################################
+  void insertDisplay(AbstractDisplay* display, size_t index)
+  {
+    auto l = new QVBoxLayout();
+    l->setContentsMargins(0, 0, 0, 0);
+    l->addWidget(display);
+
+    collapsibleStack->insertPage(index, display->displayFactory()->title(), l, true);
+
+    {
+      auto button = new QToolButton();
+      button->setStyleSheet(toolBarStyle());
+      button->setIcon(configureIcon);
+      collapsibleStack->addWidgetToButton(index, button);
+      connect(button, &QToolButton::clicked, q, [=]
+      {
+        execConfigDialog(display, q);
+      });
+
+      new tp_qt_utils::QObjectCallback<void(bool)>(button, setButtonVisibility, [=](bool visible)
+      {
+        button->setVisible(visible);
+      });
+    }
+
+    {
+      auto button = new QToolButton();
+      button->setStyleSheet(toolBarStyle());
+      button->setIcon(closeIcon);
+      collapsibleStack->addWidgetToButton(index, button);
+      connect(button, &QToolButton::clicked, q, [=]
+      {
+        collapsibleStack->removePage(displayIndex(display));
+      });
+
+      new tp_qt_utils::QObjectCallback<void(bool)>(button, setButtonVisibility, [=](bool visible)
+      {
+        button->setVisible(visible);
+      });
+    }
   }
 
   //################################################################################################
@@ -198,6 +189,28 @@ struct CollapsibleStack::Private
   }
 
   //################################################################################################
+  AbstractDisplay* takeDisplay(size_t index)
+  {
+    QLayout* layout = collapsibleStack->page(index);
+    if(!layout)
+      return nullptr;
+
+    auto widgetItem = dynamic_cast<QWidgetItem*>(layout->itemAt(0));
+    if(!widgetItem)
+      return nullptr;
+
+    auto display = dynamic_cast<AbstractDisplay*>(widgetItem->widget());
+    if(display)
+    {
+      layout->removeWidget(display);
+      display->setParent(nullptr);
+      collapsibleStack->removePage(index);
+    }
+
+    return display;
+  }
+
+  //################################################################################################
   void updateAddTab()
   {
     setButtonVisibility(toolBarVisible);
@@ -230,6 +243,25 @@ struct CollapsibleStack::Private
     addPanelLayout->addStretch();
 
     collapsibleStack->addPage("Add pannel", addPanelLayout);
+  }
+
+  //################################################################################################
+  void updatePanelList()
+  {
+    if(!configDialog || !pannelListWidget)
+      return;
+
+    pannelListWidget->clear();
+
+    size_t iMax=count();
+    for(size_t i=0; i<iMax; i++)
+    {
+      AbstractDisplay* display = findDisplay(i);
+      if(!display)
+        continue;
+
+      pannelListWidget->addItem(QString::fromStdString(display->displayFactory()->title().toStdString()));
+    }
   }
 };
 
@@ -322,9 +354,25 @@ void CollapsibleStack::loadState(const nlohmann::json& j)
 //##################################################################################################
 QWidget* CollapsibleStack::configWidget()
 {
-  //auto currentDisplay = dynamic_cast<AbstractDisplay*>(d->collapsiblePannelWidget->currentWidget());
-  //return (!currentDisplay)?nullptr:currentDisplay->configWidget();
-  return nullptr;
+  if(!d->configDialog)
+  {
+    d->configDialog = new QWidget();
+
+    auto l = new QVBoxLayout(d->configDialog);
+
+    l->addWidget(new QLabel("Pannels"));
+
+    d->pannelListWidget = new QListWidget();
+    l->addWidget(d->pannelListWidget);
+    d->pannelListWidget->setDragEnabled(true);
+    d->pannelListWidget->setDragDropMode(QListWidget::InternalMove);
+
+    d->pannelListWidget->viewport()->installEventFilter(this);
+  }
+
+  d->updatePanelList();
+
+  return d->configDialog;
 }
 
 //##################################################################################################
@@ -341,36 +389,43 @@ bool CollapsibleStack::toolBarsVisible() const
 }
 
 //##################################################################################################
-void CollapsibleStack::configureTriggered()
+bool CollapsibleStack::eventFilter(QObject* object, QEvent* event)
 {
-  //  if(d->display)
-  //  {
-  //    QPointer<QWidget> configureWidget = d->display->configWidget();
-  //    if(configureWidget)
-  //    {
-  //      QPointer<QDialog> dialog = new QDialog(this);
-  //      dialog->setWindowTitle("Configure Display");
-  //      auto layout = new QVBoxLayout(dialog);
+  if(d->pannelListWidget && object == d->pannelListWidget->viewport() && event->type() == QEvent::Drop)
+  {
+    QDropEvent* dropEvent = dynamic_cast<QDropEvent*>(event);
+    if(!dropEvent)
+      return true;
 
-  //      layout->setContentsMargins(0, 0, 0, 0);
-  //      layout->addWidget(configureWidget);
+    int from = d->pannelListWidget->currentIndex().row();
+    if(from<0)
+      return true;
 
-  //      layout->addStretch();
+    int to = d->pannelListWidget->indexAt(dropEvent->position().toPoint()).row();
+    if(to<0)
+      return true;
 
-  //      auto buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
-  //      buttonBox->setContentsMargins(9, 9, 9, 9);
-  //      layout->addWidget(buttonBox);
-  //      connect(buttonBox, SIGNAL(rejected()), dialog, SLOT(reject()));
+    auto pos = dropEvent->position().toPoint();
+    auto index = d->pannelListWidget->indexAt(pos);
+    auto rect = d->pannelListWidget->visualRect(index);
 
-  //      dialog->exec();
+    if(!((pos.y()-rect.top()) < 7))
+        to++;
 
-  //      if(configureWidget)
-  //        configureWidget->setParent(nullptr);
+    if(to>0 && from<to)
+      to--;
 
-  //      if(dialog)
-  //        delete dialog;
-  //    }
-  //  }
+    AbstractDisplay* display = d->takeDisplay(size_t(from));
+    if(!display)
+      return true;
+
+    d->insertDisplay(display, size_t(to));
+    d->updatePanelList();
+
+    return true;
+  }
+
+  return QWidget::eventFilter(object, event);
 }
 
 }

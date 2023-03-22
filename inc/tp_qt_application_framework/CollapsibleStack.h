@@ -79,9 +79,9 @@ public:
   */
   bool toolBarsVisible() const;
 
-private Q_SLOTS:
+private:
   //################################################################################################
-  void configureTriggered();
+  bool eventFilter(QObject* object, QEvent* event) override;
 
 private:
   struct Private;

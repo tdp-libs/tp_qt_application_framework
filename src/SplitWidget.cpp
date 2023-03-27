@@ -452,8 +452,6 @@ void SplitWidget::factoryComboActivated(int index)
   {
     delete d->display;
     d->display=nullptr;
-    //d->display->setParent(nullptr);
-    //d->display->deleteLater();
   }
 
   d->display = d->displayManager->produceDisplay(index);

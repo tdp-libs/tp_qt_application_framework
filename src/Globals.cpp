@@ -85,8 +85,6 @@ void execConfigDialog(AbstractDisplay* display, QWidget* parent)
       layout->setContentsMargins(0, 0, 0, 0);
       layout->addWidget(configureWidget);
 
-      //layout->addStretch();
-
       auto buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
       buttonBox->setContentsMargins(6, 6, 6, 6);
       layout->addWidget(buttonBox);

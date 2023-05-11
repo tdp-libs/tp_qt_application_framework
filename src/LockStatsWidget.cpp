@@ -6,6 +6,10 @@
 
 #include "tp_utils/RefCount.h"
 
+#ifdef TP_ENABLE_MUTEX_TIME
+#include "tp_utils/MutexUtils.h"
+#endif
+
 #include <QTextEdit>
 #include <QBoxLayout>
 #include <QScrollBar>

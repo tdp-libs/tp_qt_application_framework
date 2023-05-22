@@ -6,6 +6,7 @@
 #include "tp_utils/RefCount.h"
 #include "tp_utils/DebugUtils.h"
 #include "tp_utils/JSONUtils.h"
+#include "tp_utils/DebugUtils.h"
 
 #include "base64.h"
 
@@ -145,7 +146,7 @@ struct SplitWidget::Private
   }
 
   //################################################################################################
-  void split(Qt::Orientation orientation, const nlohmann::json* stateA=nullptr, const nlohmann::json* stateB=nullptr, const std::string* splitterState=nullptr)
+  SplitWidget* split(Qt::Orientation orientation, const nlohmann::json* stateA=nullptr, const nlohmann::json* stateB=nullptr, const std::string* splitterState=nullptr)
   {
     splitOrientation = orientation;
     QPointer<AbstractDisplay> existingDisplay = display;
@@ -184,16 +185,16 @@ struct SplitWidget::Private
 
     displayIndex = 0;
 
-
     b = new SplitWidget(displayManager, stateB);
     b->setParentSplitWidget(q);
     b->setToolBarsVisible(toolBarVisible);
     splitter->addWidget(b);
-
     content = splitter;
 
     if(splitterState)
       splitter->restoreState(QByteArray::fromStdString(*splitterState));
+    
+    return b;
   }
 };
 
@@ -353,6 +354,41 @@ bool SplitWidget::empty() const
 }
 
 //##################################################################################################
+SplitWidget* SplitWidget::getDisplayParent(AbstractDisplay* display)
+{
+  if(d->display && d->display == display)
+    return this;
+  if(d->a)
+  {
+    SplitWidget* parent = d->a->getDisplayParent(display);
+    if(parent)
+      return parent;
+  }
+  if(d->b)
+  {
+    SplitWidget* parent = d->b->getDisplayParent(display);
+    if(parent)
+      return parent;
+  }
+  return nullptr;
+}
+
+//##################################################################################################
+void SplitWidget::split(AbstractDisplayFactory* displayFactory, bool vertically)
+{
+  SplitWidget* newRegion{nullptr};
+  if(vertically)
+    newRegion = d->split(Qt::Vertical);
+  else
+    newRegion = d->split(Qt::Horizontal);
+
+  if(displayFactory && newRegion)
+  {
+    newRegion->assignDisplay(displayFactory->id());
+  }
+}
+
+//##################################################################################################
 void SplitWidget::closeTriggered()
 {
   //Here we use a 0 timer to perform the actual removal once control has returned to the event loop.
@@ -463,6 +499,29 @@ void SplitWidget::factoryComboActivated(int index)
   }
   else
     d->displayIndex = 0;
+}
+
+//##################################################################################################
+void SplitWidget::assignDisplay(const QString& factoryID)
+{
+  if(d->display)
+  {
+    delete d->display;
+    d->display=nullptr;
+  }
+
+  int index = d->displayManager->factoryIndex(factoryID);
+  d->display = d->displayManager->produceDisplay(index);
+
+  if(d->display)
+  {
+    d->displayFrame->layout()->addWidget(d->display);
+    d->displayIndex = index;
+  }
+  else
+    d->displayIndex = 0;
+
+  d->contentCombo->setCurrentIndex(d->displayIndex);
 }
 
 //##################################################################################################

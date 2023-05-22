@@ -6,11 +6,12 @@
 #include "json.hpp"
 
 #include <QWidget>
+#include <QPointer>
 
 namespace tp_qt_application_framework
 {
 class TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT DisplayManager;
-
+class AbstractDisplayFactory;
 //##################################################################################################
 //! Arranges displays in a splitter.
 /*!
@@ -82,6 +83,12 @@ public:
   //################################################################################################
   bool empty() const;
 
+  //################################################################################################
+  SplitWidget* getDisplayParent(AbstractDisplay* display);
+
+  //################################################################################################
+  void split(AbstractDisplayFactory* displayFactory = nullptr, bool vertically = true);
+
 private Q_SLOTS:
   //################################################################################################
   void closeTriggered();
@@ -97,6 +104,9 @@ private Q_SLOTS:
 
   //################################################################################################
   void factoryComboActivated(int index);
+
+  //################################################################################################
+  void assignDisplay(const QString& factoryID);
 
 private:
   //################################################################################################

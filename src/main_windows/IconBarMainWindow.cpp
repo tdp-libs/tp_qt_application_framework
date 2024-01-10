@@ -134,10 +134,16 @@ void IconBarMainWindow::addWorkspace(AbstractWorkspace* workspace)
   if(auto a = workspace->action(); a)
   {
     auto button = new QToolButton();
-    button->setFixedSize(70, 70);
     button->setCheckable(true);
     button->setChecked(a->isChecked());
+#ifdef ALEX_BLINOV_DEBUG
+    button->setFixedSize(48, 48);
+    button->setIconSize(QSize(48, 48));
+#else
+    button->setFixedSize(70, 70);
     button->setIconSize(QSize(64, 64));
+#endif
+
     button->setIcon(a->icon());
     button->setText(a->text());
     button->setToolTip(a->toolTip());

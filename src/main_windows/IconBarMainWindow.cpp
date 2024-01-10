@@ -137,6 +137,7 @@ void IconBarMainWindow::addWorkspace(AbstractWorkspace* workspace)
     button->setCheckable(true);
     button->setChecked(a->isChecked());
 #ifdef ALEX_BLINOV_DEBUG
+    // buttons too big for laptop screen - vertical dimension goes behind the screen edge!
     button->setFixedSize(48, 48);
     button->setIconSize(QSize(48, 48));
 #else

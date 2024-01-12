@@ -242,7 +242,7 @@ struct CollapsibleStack::Private
 
     addPanelLayout->addStretch();
 
-    collapsibleStack->addPage("Add pannel", addPanelLayout);
+    collapsibleStack->addPage("Add panel", addPanelLayout);
   }
 
   //################################################################################################

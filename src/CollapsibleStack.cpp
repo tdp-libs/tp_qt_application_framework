@@ -73,7 +73,7 @@ struct CollapsibleStack::Private
   }
 
   //################################################################################################
-  void addDisplay(AbstractDisplay* display)
+  void addDisplay(AbstractDisplay* display, bool expand)
   {
     if(display)
     {
@@ -82,21 +82,20 @@ struct CollapsibleStack::Private
       if(addPanelLayout)
         index--;
 
-      insertDisplay(display, index);
+      insertDisplay(display, index, expand);
     }
 
     setButtonVisibility(toolBarVisible);
   }
 
-
   //################################################################################################
-  void insertDisplay(AbstractDisplay* display, size_t index)
+  void insertDisplay(AbstractDisplay* display, size_t index, bool expand)
   {
     auto l = new QVBoxLayout();
     l->setContentsMargins(0, 0, 0, 0);
     l->addWidget(display);
 
-    collapsibleStack->insertPage(index, display->displayFactory()->title(), l, true);
+    collapsibleStack->insertPage(index, display->displayFactory()->title(), l, expand);
 
     {
       auto button = new QToolButton();
@@ -237,7 +236,7 @@ struct CollapsibleStack::Private
     {
       auto index = contentCombo->currentIndex();
       auto display = displayManager->produceDisplay(index);
-      addDisplay(display);
+      addDisplay(display, true);
     });
 
     addPanelLayout->addStretch();
@@ -328,20 +327,18 @@ void CollapsibleStack::loadState(const nlohmann::json& j)
   d->toolBarVisible =  TPJSONBool(j, "Toolbars Visible", true);
   d->updateAddTab();
 
-  try
+
+
+  if(auto i=j.find("displays"); i!=j.end() && i->is_array())
   {
-    for(const auto& jj : TPJSON(j, "displays"))
+    for(const auto& jj : *i)
     {
       std::string id = TPJSONString(jj, "Factory ID");
 
       auto idx = d->displayManager->factoryIndex(QString::fromStdString(id));
       auto display = d->displayManager->produceDisplay(idx);
-      d->addDisplay(display);
+      d->addDisplay(display, false);
     }
-  }
-  catch (...)
-  {
-
   }
 
   if(size_t index = TPJSONSizeT(j, "Selected Index", 0); index<d->collapsibleStack->count())
@@ -416,7 +413,7 @@ bool CollapsibleStack::eventFilter(QObject* object, QEvent* event)
     if(!display)
       return true;
 
-    d->insertDisplay(display, size_t(to));
+    d->insertDisplay(display, size_t(to), true);
     d->updatePanelList();
 
     return true;

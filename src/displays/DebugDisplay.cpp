@@ -23,10 +23,9 @@ DebugDisplay::~DebugDisplay()=default;
 
 
 //##################################################################################################
-nlohmann::json DebugDisplay::saveState() const
+void DebugDisplay::saveState(nlohmann::json& j) const
 {
-  nlohmann::json j;
-  return j;
+  TP_UNUSED(j);
 }
 
 //##################################################################################################

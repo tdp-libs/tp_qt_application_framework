@@ -31,9 +31,9 @@ tp_qt_application_framework::AbstractDisplayFactory* CollapsibleStackDisplay::fa
 }
 
 //##################################################################################################
-nlohmann::json CollapsibleStackDisplay::saveState() const
+void CollapsibleStackDisplay::saveState(nlohmann::json& j) const
 {
-  return m_collapsibleStack->saveState();
+  m_collapsibleStack->saveState(j);
 }
 
 //##################################################################################################

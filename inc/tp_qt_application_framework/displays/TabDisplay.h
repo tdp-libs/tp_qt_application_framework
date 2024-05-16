@@ -32,7 +32,7 @@ public:
   static tp_qt_application_framework::AbstractDisplayFactory* factory(DisplayManager* displayManager);
 
   //################################################################################################
-  nlohmann::json saveState() const override;
+  void saveState(nlohmann::json& j) const override;
 
   //################################################################################################
   void loadState(const nlohmann::json& j) override;

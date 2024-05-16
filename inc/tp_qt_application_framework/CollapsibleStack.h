@@ -22,6 +22,7 @@ Containers \endlink for a list of classes that can be used for arranging display
 class TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT CollapsibleStack: public QWidget
 {
   Q_OBJECT
+  TP_DQ;
 public:
   //################################################################################################
   //! Construct a split widget.
@@ -45,7 +46,7 @@ public:
 
   \returns The state of this widget as a serialized variant map.
   */
-  nlohmann::json saveState() const;
+  void saveState(nlohmann::json& j) const;
 
   //################################################################################################
   //! Load the state of this widget
@@ -82,11 +83,6 @@ public:
 private:
   //################################################################################################
   bool eventFilter(QObject* object, QEvent* event) override;
-
-private:
-  struct Private;
-  Private* d;
-  friend struct Private;
 };
 
 }

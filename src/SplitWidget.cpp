@@ -227,24 +227,22 @@ SplitWidget::~SplitWidget()
 }
 
 //##################################################################################################
-nlohmann::json SplitWidget::saveState() const
+void SplitWidget::saveState(nlohmann::json& j) const
 {
-  nlohmann::json j;
-
   j["Toolbars Visible"] = d->toolBarVisible;
 
   //If this contains a display and is not split, save the state of the display here
   if(d->display)
   {
     j["Factory ID"]    = d->display->displayFactory()->id().toStdString();
-    j["Display State"] = d->display->saveState();
+    d->display->saveState(j["Display State"]);
   }
 
   //If this is split save the state of the two halfs
   if(d->a && d->b)
   {
-    j["Split A"]           = d->a->saveState();
-    j["Split B"]           = d->b->saveState();
+    d->a->saveState(j["Split A"]);
+    d->b->saveState(j["Split B"]);
     j["Split Orientation"] = d->splitOrientation==Qt::Horizontal ? "Horizontal" : "Vertical";
 
     //Save the geometry of the splitter
@@ -252,8 +250,6 @@ nlohmann::json SplitWidget::saveState() const
     if(splitter)
       j["Splitter Geometry"] = base64_encode(splitter->saveState().toStdString());
   }
-
-  return j;
 }
 
 //##################################################################################################

@@ -17,6 +17,7 @@ class AbstractWorkspace;
 class TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractMainWindow: public QWidget
 {
   Q_OBJECT
+  TP_DQ;
 public:
   //################################################################################################
   AbstractMainWindow(QWidget* parent=nullptr);
@@ -56,7 +57,7 @@ public:
   virtual void addMenu(QMenu* menu);
 
   //################################################################################################
-  virtual nlohmann::json saveState() const;
+  virtual void saveState(nlohmann::json& j) const;
 
   //################################################################################################
   virtual void loadState(const nlohmann::json& j);
@@ -68,11 +69,6 @@ protected:
 
   //################################################################################################
   void closeEvent(QCloseEvent* closeEvent) override;
-
-private:
-  struct Private;
-  Private* d;
-  friend struct Private;
 };
 
 }

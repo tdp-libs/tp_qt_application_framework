@@ -17,6 +17,8 @@ class AbstractMainWindow;
 class TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT AbstractWorkspace: public QWidget
 {
   Q_OBJECT
+  TP_DQ;
+  friend class AbstractMainWindow;
 public:
   //################################################################################################
   AbstractWorkspace(const std::string& name, QWidget* parent=nullptr);
@@ -38,7 +40,7 @@ public:
   virtual void addCustomMenus(const std::function<QMenu*(const QString&)>& addMenu);
 
   //################################################################################################
-  virtual nlohmann::json saveState() const;
+  virtual void saveState(nlohmann::json& j) const;
 
   //################################################################################################
   virtual void loadState(const nlohmann::json& j);
@@ -47,12 +49,6 @@ protected:
   //################################################################################################
   //! Set when the workspace is added to the main window
   virtual void setMainWindow(AbstractMainWindow* mainWindow);
-
-private:
-  struct Private;
-  Private* d;
-  friend struct Private;
-  friend class AbstractMainWindow;
 };
 
 }

@@ -21,9 +21,9 @@ AbstractDisplayFactory* AbstractDisplay::displayFactory() const
 }
 
 //##################################################################################################
-nlohmann::json AbstractDisplay::saveState() const
+void AbstractDisplay::saveState(nlohmann::json& j) const
 {
-  return nlohmann::json();
+  TP_UNUSED(j);
 }
 
 //##################################################################################################

@@ -118,10 +118,8 @@ TabWidget::~TabWidget()
 }
 
 //##################################################################################################
-nlohmann::json TabWidget::saveState() const
+void TabWidget::saveState(nlohmann::json& j) const
 {
-  nlohmann::json j;
-
   j["Toolbars Visible"] = d->toolBarVisible;
 
   auto& displaysJ = j["displays"];
@@ -136,12 +134,10 @@ nlohmann::json TabWidget::saveState() const
     displaysJ.emplace_back();
     nlohmann::json& jj = displaysJ.back();
     jj["Factory ID"]    = display->displayFactory()->id().toStdString();
-    jj["Display State"] = display->saveState();
+    display->saveState(jj["Display State"]);
   }
 
   j["Selected Index"] = d->tabWidget->currentIndex();
-
-  return j;
 }
 
 //##################################################################################################

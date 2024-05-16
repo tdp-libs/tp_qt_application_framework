@@ -109,16 +109,12 @@ void AbstractMainWindow::addMenu(QMenu* menu)
 }
 
 //##################################################################################################
-nlohmann::json AbstractMainWindow::saveState() const
+void AbstractMainWindow::saveState(nlohmann::json& j) const
 {
-  nlohmann::json j;
-
   for(auto workspace : d->workspaces)
-    j[workspace->name()] = workspace->saveState();
+    workspace->saveState(j[workspace->name()]);
 
   j["currentWorkspace"] = tpIndexOf(d->workspaces, d->currentWorkspace);
-
-  return j;
 }
 
 //##################################################################################################

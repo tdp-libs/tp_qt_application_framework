@@ -31,9 +31,9 @@ tp_qt_application_framework::AbstractDisplayFactory* TabDisplay::factory(Display
 }
 
 //##################################################################################################
-nlohmann::json TabDisplay::saveState() const
+void TabDisplay::saveState(nlohmann::json& j) const
 {
-  return m_tabWidget->saveState();
+  m_tabWidget->saveState(j);
 }
 
 //##################################################################################################

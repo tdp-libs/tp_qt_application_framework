@@ -11,6 +11,7 @@ class AbstractWorkspace;
 class TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT IconBarMainWindow: public AbstractMainWindow
 {
   Q_OBJECT
+  TP_DQ;
 public:
   //################################################################################################
   IconBarMainWindow(QWidget* parent=nullptr);
@@ -46,11 +47,6 @@ protected:
   //################################################################################################
   //! Called when the current workspace changes
   void currentWorkspaceChanged() override;
-
-private:
-  struct Private;
-  Private* d;
-  friend struct Private;
 };
 
 }

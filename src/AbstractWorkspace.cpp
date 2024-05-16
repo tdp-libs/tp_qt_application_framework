@@ -57,9 +57,9 @@ void AbstractWorkspace::addCustomMenus(const std::function<QMenu*(const QString&
 }
 
 //##################################################################################################
-nlohmann::json AbstractWorkspace::saveState() const
+void AbstractWorkspace::saveState(nlohmann::json& j) const
 {
-  return nlohmann::json();
+  TP_UNUSED(j);
 }
 
 //##################################################################################################

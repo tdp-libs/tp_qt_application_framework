@@ -21,6 +21,7 @@ with the list.
 class TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT DisplayManager: public QObject
 {
   Q_OBJECT
+  TP_DQ;
 public:
   //################################################################################################
   //! Construct a manager
@@ -85,11 +86,6 @@ public:
   \return The 1 based index of the factory or -1 if no match was found.
   */
   int factoryIndex(const QString& factoryID);
-
-private:
-  struct Private;
-  Private* d;
-  friend struct Private;
 };
 
 }

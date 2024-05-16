@@ -66,7 +66,7 @@ public:
   \return The current state of the display, serialized to a byte array.
   \sa loadState().
   */
-  virtual nlohmann::json saveState() const;
+  virtual void saveState(nlohmann::json& j) const;
 
   //################################################################################################
   //! Restore the state of the display

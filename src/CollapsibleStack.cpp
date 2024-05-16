@@ -286,10 +286,8 @@ CollapsibleStack::~CollapsibleStack()
 }
 
 //##################################################################################################
-nlohmann::json CollapsibleStack::saveState() const
+void CollapsibleStack::saveState(nlohmann::json& j) const
 {
-  nlohmann::json j;
-
   j["Toolbars Visible"] = d->toolBarVisible;
 
   auto& displaysJ = j["displays"];
@@ -312,12 +310,11 @@ nlohmann::json CollapsibleStack::saveState() const
     displaysJ.emplace_back();
     nlohmann::json& jj = displaysJ.back();
     jj["Factory ID"]    = display->displayFactory()->id().toStdString();
-    jj["Display State"] = display->saveState();
+    display->saveState(jj["Display State"]);
   }
 
   j["Selected Index"] = d->collapsibleStack->currentPage();
 
-  return j;
 }
 
 //##################################################################################################

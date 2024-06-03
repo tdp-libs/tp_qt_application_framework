@@ -1,7 +1,8 @@
 TARGET = tp_qt_application_framework
 TEMPLATE = lib
 
-QT += widgets gui
+QT += widgets
+QT += gui
 
 DEFINES += TP_QT_APPLICATION_FRAMEWORK_LIBRARY
 

@@ -282,8 +282,8 @@ void SplitWidget::loadState(const nlohmann::json& j)
     if(TPJSONString(j, "Split Orientation") == "Horizontal")
       orientation = Qt::Horizontal;
 
-    const auto stateA = TPJSON(j, "Split A");
-    const auto stateB = TPJSON(j, "Split B");
+    const auto& stateA = TPJSON(j, "Split A");
+    const auto& stateB = TPJSON(j, "Split B");
     auto splitterState = TPJSONString(j, "Splitter Geometry");
     splitterState = base64_decode(splitterState);
 
@@ -308,7 +308,7 @@ void SplitWidget::loadState(const nlohmann::json& j)
       {
         d->displayFrame->layout()->addWidget(d->display);
         d->displayIndex = index;
-        d->display->loadState(TPJSON(j, "Display State"));
+        tp_utils::loadObjectFromJSON(j, "Display State", d->display.get());
       }
       else
         d->displayIndex = 0;

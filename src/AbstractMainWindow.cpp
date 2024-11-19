@@ -121,7 +121,7 @@ void AbstractMainWindow::saveState(nlohmann::json& j) const
 void AbstractMainWindow::loadState(const nlohmann::json& j)
 {
   for(auto workspace : d->workspaces)
-    workspace->loadState(TPJSON(j, workspace->name()));
+    tp_utils::loadObjectFromJSON(j, workspace->name().c_str(), workspace);
 
   size_t currentWorkspace = TPJSONSizeT(j, "currentWorkspace");
   if(currentWorkspace<d->workspaces.size())

@@ -153,9 +153,9 @@ void TabWidget::loadState(const nlohmann::json& j)
   d->toolBarVisible =  TPJSONBool(j, "Toolbars Visible", true);
   d->updateAddTab();
 
-  try
+  if(auto i = j.find("displays"); i != j.end() && i->is_array())
   {
-    for(const auto& jj : TPJSON(j, "displays"))
+    for(const auto& jj : *i)
     {
       std::string id = TPJSONString(jj, "Factory ID");
 
@@ -165,13 +165,9 @@ void TabWidget::loadState(const nlohmann::json& j)
       {
         int end = d->tabWidget->count()-(d->toolBarVisible?1:0);
         d->tabWidget->insertTab(end, display, display->displayFactory()->title());
-        display->loadState(TPJSON(jj, "Display State"));
+        tp_utils::loadObjectFromJSON(jj, "Display State", display);
       }
     }
-  }
-  catch (...)
-  {
-
   }
 
   auto index = TPJSONInt(j, "Selected Index", 0);

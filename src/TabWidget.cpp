@@ -23,7 +23,7 @@ struct TabWidget::Private
   TP_REF_COUNT_OBJECTS("tp_qt_application_framework::TabWidget::Private");
   TP_NONCOPYABLE(Private);
 
-  TabWidget* q;
+  Q* q;
   QTabWidget* tabWidget{nullptr};
 
   DisplayManager* displayManager;
@@ -35,7 +35,7 @@ struct TabWidget::Private
   QWidget* addTab{nullptr};
 
   //################################################################################################
-  Private(TabWidget* q_, DisplayManager* displayManager_):
+  Private(Q* q_, DisplayManager* displayManager_):
     q(q_),
     displayManager(displayManager_)
   {

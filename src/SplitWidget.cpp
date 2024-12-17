@@ -35,7 +35,7 @@ struct SplitWidget::Private
   TP_REF_COUNT_OBJECTS("tp_qt_application_framework::SplitWidget::Private");
   TP_NONCOPYABLE(Private);
 
-  SplitWidget* q;
+  Q* q;
   QPointer<SplitWidget> parentSplitWidget;
 
   DisplayManager* displayManager;
@@ -62,7 +62,7 @@ struct SplitWidget::Private
   bool toolBarVisible{true};
 
   //################################################################################################
-  Private(SplitWidget* q_, DisplayManager* displayManager_):
+  Private(Q* q_, DisplayManager* displayManager_):
     q(q_),
     displayManager(displayManager_),
     closeAction(new QAction(QIcon(":/tp_qt_application_framework/Close.png"), "Close", q)),

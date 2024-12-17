@@ -28,7 +28,7 @@ struct CollapsibleStack::Private
   TP_REF_COUNT_OBJECTS("tp_qt_application_framework::CollapsibleStack::Private");
   TP_NONCOPYABLE(Private);
 
-  CollapsibleStack* q;
+  Q* q;
 
   tp_qt_widgets::ExclusiveCollapsibleStack* collapsibleStack{nullptr};
 
@@ -49,7 +49,7 @@ struct CollapsibleStack::Private
   tp_utils::CallbackCollection<void(bool)> setButtonVisibility;
 
   //################################################################################################
-  Private(CollapsibleStack* q_, DisplayManager* displayManager_):
+  Private(Q* q_, DisplayManager* displayManager_):
     q(q_),
     displayManager(displayManager_)
   {

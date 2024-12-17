@@ -24,7 +24,7 @@ struct IconBarMainWindow::Private
   TP_REF_COUNT_OBJECTS("tp_qt_application_framework::IconBarMainWindow::Private");
   TP_NONCOPYABLE(Private);
 
-  IconBarMainWindow* q;
+  Q* q;
 
   QPointer<QMenuBar>    menuBar;
   QPointer<QMenu>       viewMenu;
@@ -36,7 +36,7 @@ struct IconBarMainWindow::Private
   std::vector<MenuItems_lt> customMenus;
 
   //################################################################################################
-  Private(IconBarMainWindow* q_):
+  Private(Q* q_):
     q(q_)
   {
 

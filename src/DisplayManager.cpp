@@ -17,13 +17,13 @@ struct DisplayManager::Private
   TP_REF_COUNT_OBJECTS("tp_qt_application_framework::DisplayManager::Private");
   TP_NONCOPYABLE(Private);
 
-  DisplayManager* q;
+  Q* q;
 
   QList<AbstractDisplayFactory*> displayFactories;
   QStringListModel* factoriesModel;
 
   //################################################################################################
-  Private(DisplayManager* q_):
+  Private(Q* q_):
     q(q_),
     factoriesModel(new QStringListModel(q))
   {

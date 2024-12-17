@@ -17,14 +17,14 @@ struct FileMenuMainWindow::Private
   TP_REF_COUNT_OBJECTS("tp_qt_application_framework::FileMenuMainWindow::Private");
   TP_NONCOPYABLE(Private);
 
-  FileMenuMainWindow* q;
+  Q* q;
 
   QPointer<QMenuBar>    menuBar;
   QPointer<QMenu>       viewMenu;
   QPointer<QVBoxLayout> menuLayout;
 
   //################################################################################################
-  Private(FileMenuMainWindow* q_):
+  Private(Q* q_):
     q(q_)
   {
 

@@ -42,7 +42,7 @@ void SplitterDisplay::setToolBarsVisible(bool visible)
 }
 
 //##################################################################################################
-AbstractDisplayFactory* SplitterDisplay::makeDisplayFactory(DisplayManager* displayManager)
+AbstractDisplayFactory* SplitterDisplay::factory(DisplayManager* displayManager)
 {
   return new DisplayFactory("Splitter", "Splitter", [=](auto displayFactory)
   {

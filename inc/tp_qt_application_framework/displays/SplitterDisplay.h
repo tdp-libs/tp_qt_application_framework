@@ -38,7 +38,7 @@ public:
   void setToolBarsVisible(bool visible) override;
 
   //################################################################################################
-  static AbstractDisplayFactory* makeDisplayFactory(DisplayManager* displayManager);
+  static AbstractDisplayFactory* factory(DisplayManager* displayManager);
 
 private:
   SplitWidget* m_splitWidget;

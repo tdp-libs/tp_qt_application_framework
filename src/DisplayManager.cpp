@@ -3,6 +3,7 @@
 #include "tp_qt_application_framework/AbstractDisplay.h"
 
 #include "tp_utils/RefCount.h"
+#include "tp_utils/TimeUtils.h"
 
 #include <QAbstractItemModel>
 #include <QList>
@@ -21,6 +22,14 @@ struct DisplayManager::Private
 
   QList<AbstractDisplayFactory*> displayFactories;
   QStringListModel* factoriesModel;
+
+  enum class SortDisplays
+  {
+    OrderAdded,
+    Title
+  };
+
+  SortDisplays sortDisplays{SortDisplays::Title};
 
   //################################################################################################
   Private(Q* q_):
@@ -55,6 +64,7 @@ DisplayManager::DisplayManager(QObject* parent):
 //##################################################################################################
 DisplayManager::~DisplayManager()
 {
+  TP_FUNCTION_TIME("DisplayManager::~DisplayManager");
   qDeleteAll(d->displayFactories);
   delete d;
 }
@@ -62,7 +72,27 @@ DisplayManager::~DisplayManager()
 //##################################################################################################
 void DisplayManager::addDisplayFactory(AbstractDisplayFactory* displayFactory)
 {
-  d->displayFactories.append(displayFactory);
+  switch(d->sortDisplays)
+  {
+    case Private::SortDisplays::OrderAdded:
+    {
+      d->displayFactories.append(displayFactory);
+      break;
+    }
+
+    case Private::SortDisplays::Title:
+    {
+      int i=0;
+      for(; i<d->displayFactories.size(); i++)
+        if(d->displayFactories.at(i)->title()>displayFactory->title())
+          break;
+
+
+      d->displayFactories.insert(i, displayFactory);
+      break;
+    }
+  }
+
   d->updateModel();
 }
 

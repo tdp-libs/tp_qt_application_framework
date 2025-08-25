@@ -3,9 +3,20 @@
 
 #include "tp_qt_application_framework/AbstractMainWindow.h"
 
+#include <QSize>
+
 namespace tp_qt_application_framework
 {
 class AbstractWorkspace;
+
+//##################################################################################################
+struct IconBarButtonStyle
+{
+  QSize iconSize{32, 32};
+  QSize buttonSizeMin{70, 100};
+  QSize buttonSizeMax{70, 100};
+  Qt::ToolButtonStyle style{Qt::ToolButtonIconOnly};
+};
 
 //##################################################################################################
 class TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT IconBarMainWindow: public AbstractMainWindow
@@ -14,7 +25,7 @@ class TP_QT_APPLICATION_FRAMEWORK_SHARED_EXPORT IconBarMainWindow: public Abstra
   TP_DQ;
 public:
   //################################################################################################
-  IconBarMainWindow(QWidget* parent=nullptr);
+  IconBarMainWindow(const IconBarButtonStyle& style=IconBarButtonStyle(), QWidget* parent=nullptr);
 
   //################################################################################################
   ~IconBarMainWindow() override;

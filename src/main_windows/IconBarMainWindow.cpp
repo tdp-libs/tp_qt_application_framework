@@ -26,6 +26,8 @@ struct IconBarMainWindow::Private
 
   Q* q;
 
+  IconBarButtonStyle style;
+
   QPointer<QMenuBar>    menuBar;
   QPointer<QMenu>       viewMenu;
   QPointer<QVBoxLayout> menuLayout;
@@ -36,8 +38,9 @@ struct IconBarMainWindow::Private
   std::vector<MenuItems_lt> customMenus;
 
   //################################################################################################
-  Private(Q* q_):
-    q(q_)
+  Private(Q* q_, const IconBarButtonStyle& style_):
+    q(q_),
+    style(style_)
   {
 
   }
@@ -89,9 +92,9 @@ struct IconBarMainWindow::Private
 };
 
 //##################################################################################################
-IconBarMainWindow::IconBarMainWindow(QWidget* parent):
+IconBarMainWindow::IconBarMainWindow(const IconBarButtonStyle& style, QWidget* parent):
   AbstractMainWindow(parent),
-  d(new Private(this))
+  d(new Private(this, style))
 {
   d->menuBar = new QMenuBar();
   d->menuBar->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
@@ -111,7 +114,7 @@ IconBarMainWindow::IconBarMainWindow(QWidget* parent):
   d->buttonLayout = new QVBoxLayout();
   d->leftLayout->addLayout(d->buttonLayout);
   d->buttonLayout->setContentsMargins(2,2,2,2);
-  buttonWidget->setFixedWidth(74);
+  buttonWidget->setFixedWidth(style.buttonSizeMax.width()+4);
   buttonWidget->setStyleSheet("background-color:#404142;");
   d->hLayout->addWidget(buttonWidget);
   d->buttonLayout->addStretch();
@@ -135,11 +138,11 @@ void IconBarMainWindow::addWorkspace(AbstractWorkspace* workspace)
     auto button = new QToolButton();
     button->setCheckable(true);
     button->setChecked(a->isChecked());
-    button->setIconSize(QSize(32, 32));
-    button->setMinimumSize(70, 32);
-    button->setMaximumSize(70, 100);
+    button->setIconSize(d->style.iconSize);
+    button->setMinimumSize(d->style.buttonSizeMin);
+    button->setMaximumSize(d->style.buttonSizeMax);
     button->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Policy::MinimumExpanding);
-    button->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+    button->setToolButtonStyle(d->style.style);
     button->setIcon(a->icon());
     button->setText(a->text());
     button->setToolTip(a->toolTip());
